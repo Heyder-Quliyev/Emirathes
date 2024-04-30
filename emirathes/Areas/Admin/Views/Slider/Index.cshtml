@@ -1,0 +1,190 @@
+﻿@model List<Tickts>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-box">
+            <div class="form-title-wrap">
+                <div class="d-flex align-items-center justify-content-between">
+                 
+                  
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                        New Tickts
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="SliderCreateForm" class="row" style="width: 500px;" method="post" asp-area="Admin" asp-controller="Slider" asp-action="Create">
+
+                                        @Html.AntiForgeryToken()
+                                        <div class="col-md-6">
+                                            <label>
+                                                Destination
+                                            </label>
+                                            <input name="Destiantion" type="text" class="form-control" />
+@*                                             <span asp-validation-for="Destiantion" class="text-danger"></span>
+ *@                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Direction
+                                            </label>                                         
+
+                                            <input name="Way" type="text" class="form-control" />
+
+                                           <span  class="text-danger"></span>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Class
+                                            </label>
+                                            <input name="Classes" type="text" class="form-control" />
+@*                                             <span asp-validation-for="Classes" class="text-danger"></span>
+ *@                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Flight Number
+                                            </label>
+                                            <input name="FlightNumber" type="text" class="form-control" />
+@*                                             <span asp-validation-for="FlightNumber" class="text-danger"></span>
+ *@                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Price
+                                            </label>
+                                            <input name="Price" type="text" class="form-control" />
+@*                                             <span asp-validation-for="Price" class="text-danger"></span>
+ *@
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Take Off Time
+                                            </label>
+                                            <input name="Date" type="text" class="form-control" />
+@*                                             <span asp-validation-for="Date" class="text-danger"></span>
+ *@
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Landing Time
+                                            </label>
+                                            <input name="LandigTime" type="text" class="form-control" />
+@*                                             <span asp-validation-for="LandigTime" class="text-danger"></span>
+ *@                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Total Flight Time
+                                            </label>
+                                            <input name="Time" type="text" class="form-control" />
+@*                                             <span asp-validation-for="Time" class="text-danger"></span>
+ *@
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>
+                                                Images
+                                            </label>
+                                            <input name="ImgUrl" type="file" class="form-control" />
+                                        </div>
+                                     
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button form="SliderCreateForm" type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="table-form table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Destiantion</th>
+                                <th scope="col">Way</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Flight Number</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Take Off Time</th>
+                                <th scope="col">Landing Time</th>
+                                <th scope="col">Total Time</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Operation</th>
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+
+
+                                <tr>
+                                    <th>@item.Destiantion</th>
+                                    <td>
+                                        <div class="table-content">
+                                            <h3 class="title">@item.Way</h3>
+                                        </div>
+                                    </td>
+                                    <td>@item.Classes</td>
+                                    <td>@item.FlightNumber</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Date</td>
+                                    <td>@item.LandigTime</td>
+                                    <td>@item.Time</td>
+                                    <td>
+
+                                        <img width="100px" src="~/images/@item.ImgUrl"/>
+
+                                    </td>
+
+                                    <td>
+                                        <div class="table-content" style="width:50px;">
+                                            <a class="btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- end form-box -->
+    </div><!-- end col-lg-12 -->
+</div><!-- end row -->

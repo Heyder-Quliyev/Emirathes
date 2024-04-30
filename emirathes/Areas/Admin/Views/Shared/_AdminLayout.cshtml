@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from techydevs.com/demos/trizen/html/admin-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Apr 2024 18:23:44 GMT -->
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="TechyDevs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Emirates Admin Panel</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/images/emirates-airlines-logo-1-removebg-preview.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+
+    <!-- Template CSS Files -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/css/line-awesome.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/css/daterangepicker.css">
+    <link rel="stylesheet" href="~/css/animate.min.css">
+    <link rel="stylesheet" href="~/css/animated-headline.css">
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body class="section-bg">
+    <!-- start cssload-loader -->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+        </div>
+    </div>
+    <!-- end cssload-loader -->
+    <!-- ================================
+           START USER CANVAS MENU
+    ================================= -->
+   
+    <!-- ================================
+           END USER CANVAS MENU
+    ================================= -->
+    <!-- ================================
+           START DASHBOARD NAV
+    ================================= -->
+    <div class="sidebar-nav sidebar--nav">
+        <div class="sidebar-nav-body">
+            <div class="side-menu-close">
+                <i class="la la-times"></i>
+            </div><!-- end menu-toggler -->
+            <div class="author-content">
+                <div class="d-flex align-items-center">
+                    <div class="author-img avatar-sm">
+                        <img src="~/images/team9.jpg" alt="testimonial image">
+                    </div>
+                    <div class="author-bio">
+                        <h4 class="author__title">Royel travel agency</h4>
+                        <span class="author__meta">Welcome to Admin Panel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-menu-wrap">
+                <ul class="sidebar-menu toggle-menu list-items">
+
+                    <li>
+                        <a asp-area="Admin" asp-controller="Slider" asp-action="Index"><i class="la la-list mr-2"></i>Manage List</a>
+                    </li>
+
+
+                    <li >
+                        <a asp-area="Admin" asp-controller="Slider" asp-action="Create"><i class="la la-plus mr-2"></i>Create</a>
+                    </li>
+
+
+
+
+
+
+                    <li><a asp-controller="Home" asp-action="Index"><i class="la la-power-off mr-2 text-color-11"></i>Logout</a></li>
+                </ul>
+            </div><!-- end sidebar-menu-wrap -->
+        </div>
+    </div><!-- end sidebar-nav -->
+    <!-- ================================
+           END DASHBOARD NAV
+    ================================= -->
+    <!-- ================================
+        START DASHBOARD AREA
+    ================================= -->
+    <section class="dashboard-area">
+        <div class="dashboard-nav dashboard--nav">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="menu-wrapper">
+                            <div class="logo mr-5">
+                                <a asp-controller="Home" asp-action="Index"><img src="~/images/emirates-airlines-logo-1-removebg-preview.png" alt="logo" width="100px"></a>
+                                <div class="menu-toggler">
+                                    <i class="la la-bars"></i>
+                                    <i class="la la-times"></i>
+                                </div><!-- end menu-toggler -->
+                                <div class="user-menu-open">
+                                    <i class="la la-user"></i>
+                                </div><!-- end user-menu-open -->
+                            </div>
+                            
+                            <div class="nav-btn ml-auto">
+                                <div class="notification-wrap d-flex align-items-center">
+                                    <div class="notification-item mr-2">
+                                    </div><!-- end notification-item -->
+                                    <div class="notification-item mr-2">
+                                        <div class="dropdown">
+                                        </div>
+                                    </div><!-- end notification-item -->
+                                    <div class="notification-item">
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="~/images/team8.jpg" alt="team-img"></div>
+                                                    <span class="font-size-14 font-weight-bold">Royel Admin</span>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
+                                               
+                                                <div class="list-group drop-reveal-list user-drop-reveal-list">
+                                                    <a href="admin-dashboard-settings.html" class="list-group-item list-group-item-action">
+                                                        <div class="msg-body">
+                                                            <div class="msg-content">
+                                                                <h3 class="title"><i class="la la-user mr-2"></i> Edit Profile</h3>
+                                                            </div>
+                                                        </div><!-- end msg-body -->
+                                                    </a>
+                                                    <a href="admin-dashboard-orders.html" class="list-group-item list-group-item-action">
+                                                        <div class="msg-body">
+                                                            <div class="msg-content">
+                                                                <h3 class="title"><i class="la la-shopping-cart mr-2"></i>Orders</h3>
+                                                            </div>
+                                                        </div><!-- end msg-body -->
+                                                    </a>
+                                                    <a href="#" class="list-group-item list-group-item-action">
+                                                        <div class="msg-body">
+                                                            <div class="msg-content">
+                                                                <h3 class="title"><i class="la la-bell mr-2"></i>Messages</h3>
+                                                            </div>
+                                                        </div><!-- end msg-body -->
+                                                    </a>
+                                                    <a href="admin-dashboard-settings.html" class="list-group-item list-group-item-action">
+                                                        <div class="msg-body">
+                                                            <div class="msg-content">
+                                                                <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
+                                                            </div>
+                                                        </div><!-- end msg-body -->
+                                                    </a>
+                                                    <div class="section-block"></div>
+                                                    <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">
+                                                        <div class="msg-body">
+                                                            <div class="msg-content">
+                                                                <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
+                                                            </div>
+                                                        </div><!-- end msg-body -->
+                                                    </a>
+                                                </div>
+                                            </div><!-- end dropdown-menu -->
+                                        </div>
+                                    </div><!-- end notification-item -->
+                                </div>
+                            </div><!-- end nav-btn -->
+                        </div><!-- end menu-wrapper -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div><!-- end container-fluid -->
+        </div><!-- end dashboard-nav -->
+       
+
+
+                            @RenderBody();
+
+    <div class="row align-items-center">
+        <div class="col-lg-7">
+            <div class="copy-right padding-top-30px">
+                <p class="copy__desc">
+                   Copyright Emirates Group 2020. Made with
+                   by <a>Emirates Group</a>
+                </p>
+            </div><!-- end copy-right -->
+        </div><!-- end col-lg-7 -->
+        <div class="col-lg-5">
+            <div class="copy-right-content text-right padding-top-30px">
+                <ul class="social-profile">
+                    <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                    <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                    <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
+                </ul>
+            </div><!-- end copy-right-content -->
+        </div><!-- end col-lg-5 -->
+    </div><!-- end row -->
+    </section>
+
+
+
+
+
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
+    <!-- end scroll top -->
+    <!-- Template JS Files -->
+    <script src="~/js/jquery-3.7.1.min.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-select.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.fancybox.min.js"></script>
+    <script src="~/js/jquery.countTo.min.js"></script>
+    <script src="~/js/animated-headline.js"></script>
+    <script src="~/js/jquery.sparkline.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/chart.js"></script>
+    <script src="~/js/chart.extension.js"></script>
+    <script src="~/js/bar-chart.js"></script>
+    <script src="~/js/line-chart.js"></script>
+    <script src="~/js/jquery.ripples-min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    </body>
+    </html>
