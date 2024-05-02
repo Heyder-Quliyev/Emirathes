@@ -23,14 +23,15 @@ namespace emirathes.Controllers
 
         public IActionResult FlightSearch()
         {
-            return View(appDbContent.Ticktes.ToList());
+            return View(appDbContent.Ticktes.Where(x => x.IsAvailable != false).ToList());
+
         }
 
 
-
-
-
-
+        public IActionResult FlightSingle(int id)
+        {
+            return View(appDbContent.Ticktes.Find(id));
+        }
 
 
 
@@ -44,6 +45,17 @@ namespace emirathes.Controllers
             return View(appDbContent.Ticktes.Where(x=>x.IsAvailable !=false).ToList());
         }
 
-      
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+
+
+
+
     }
 }

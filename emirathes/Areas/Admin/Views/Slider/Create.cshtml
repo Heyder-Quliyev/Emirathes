@@ -60,6 +60,27 @@
 
                         </div>
 
+
+                        <div class="col-md-4">
+                            <label>
+                                Stops
+                            </label>
+
+                            <select asp-for="Stop" type="text" class="form-select" style="width:304px; height:38px">
+                                <option value="Non Stop"> Non Stop</option>
+                                <option value="1 Stop">1 Stop</option>
+                                <option value="2 Stop">2 Stop</option>
+                                <option value="3 Stop">3 Stop</option>
+                            </select>
+
+                            @* <input asp-for="Way" type="text" class="form-control" /> *@
+                            <span asp-validation-for="Stop" class="text-danger"></span>
+
+                        </div>
+
+
+
+
                         <div class="col-md-4">
                             <label>
                                 Flight Number
@@ -81,17 +102,16 @@
                             <label>
                                 Take Off Time
                             </label>
-                            <input asp-for="Date" type="text" class="form-control" />
-                            <span asp-validation-for="Date" class="text-danger"></span>
-
+                            <input asp-for="Date" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>         
                         </div>
 
                         <div class="col-md-4">
                             <label>
                                 Landing Time
                             </label>
-                            <input asp-for="LandigTime" type="text" class="form-control" />
-                            <span asp-validation-for="LandigTime" class="text-danger"></span>
+                            <input asp-for="LandigTime" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="LandigTime" class="text-danger"></span>                        
                         </div>
 
                         <div class="col-md-4">
@@ -107,7 +127,7 @@
                             <label>
                                 Images
                             </label>
-                            <input asp-for="ImgUrl" type="file" class="form-control" />
+                            <input asp-for="File" type="file" class="form-control" />
                         </div>
 
 

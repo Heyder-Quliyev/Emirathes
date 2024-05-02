@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace emirathes.Models
 {
@@ -22,7 +24,13 @@ namespace emirathes.Models
 
         [Required]
         public DateTime Time { get; set; }
+        public string Stop {get; set; }
         public string? ImgUrl { get; set; }
+        [NotMapped]
+        [ValidateNever]
+        public IFormFile File { get; set; }
+
+
 
         public bool IsAvailable { get; set; } = false;
 

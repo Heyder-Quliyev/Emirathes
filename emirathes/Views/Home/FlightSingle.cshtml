@@ -1,18 +1,4 @@
-﻿<section class="breadcrumb-top-bar">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb-list breadcrumb-top-list">
-                    <ul class="list-items bg-transparent radius-none p-0">
-                        <li><a href="index.html">Home</a></li>
-                        <li>France</li>
-                        <li>New york to paris</li>
-                    </ul>
-                </div><!-- end breadcrumb-list -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section>
+﻿@model Tickts
 
 
 <section class="breadcrumb-area bread-bg-6 py-0">
@@ -24,17 +10,17 @@
 
                         <a class="d-none"
                            data-fancybox="gallery"
-                           data-src="images/destination-img2.jpg"
+                           data-src="~/images/destination-img2.jpg"
                            data-caption="Showing image - 02"
                            data-speed="700"></a>
                         <a class="d-none"
                            data-fancybox="gallery"
-                           data-src="images/destination-img3.jpg"
+                           data-src="~/images/destination-img3.jpg"
                            data-caption="Showing image - 03"
                            data-speed="700"></a>
                         <a class="d-none"
                            data-fancybox="gallery"
-                           data-src="images/destination-img4.jpg"
+                           data-src="~/images/destination-img4.jpg"
                            data-caption="Showing image - 04"
                            data-speed="700"></a>
                     </div><!-- end breadcrumb-btn -->
@@ -68,40 +54,52 @@
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26">New York to Paris</h3>
+                                <h3 class="title font-size-26">@Model.Destiantion</h3>
                                 <div class="d-flex align-items-center pt-2">
-                                    <p class="mr-2">One way flight</p>
+                                    <p class="mr-2">@Model.Way</p>
                                     <p>
-                                        <span class="badge badge-warning text-white font-weight-medium font-size-16">1 Stop</span>
+                                        <span class="badge badge-warning text-white font-weight-medium font-size-16">@Model.Stop</span>
                                     </p>
                                 </div>
                             </div><!-- end single-content-item -->
+
+         
                             <div class="section-block"></div>
                             <div class="single-content-item py-4">
                                 <div class="row">
+
+
+
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <h3 class="title font-size-15 font-weight-medium">Flight Take off</h3>
-                                            <span class="font-size-13">12 Jun 2020, 7:50 am</span>
+                                            <span class="font-size-13">@Model.Date</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
+
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <i class="la la-clock-o text-color font-size-22"></i>
-                                            <span class="font-size-13 mt-n2">1H 40M</span>
+                                            <span class="font-size-13 mt-n2">@Model.Time</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
+
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <h3 class="title font-size-15 font-weight-medium">Flight Landing</h3>
-                                            <span class="font-size-13">13 Jun 2020, 5:50 am</span>
+                                            <span class="font-size-13">@Model.LandigTime</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
+
                                     <div class="col-lg-12">
                                         <div class="single-feature-titles text-center border-top border-bottom py-3 mb-4">
-                                            <h3 class="title font-size-15 font-weight-medium">Total flight time:<span class="font-size-13 d-inline-block ml-1 text-gray">13 Hours 40 min</span></h3>
+                                            <h3 class="title font-size-15 font-weight-medium">Total flight time:<span class="font-size-13 d-inline-block ml-1 text-gray">@Model.Time</span></h3>
                                         </div>
                                     </div><!-- end col-lg-12 -->
+
+                               
+
+
                                     <div class="col-lg-4 responsive-column">
                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
@@ -109,7 +107,7 @@
                                             </div>
                                             <div class="single-feature-titles">
                                                 <h3 class="title font-size-15 font-weight-medium">Airline</h3>
-                                                <span class="font-size-13">Delta</span>
+                                                <span class="font-size-13">Fly Emirates</span>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -120,7 +118,7 @@
                                             </div>
                                             <div class="single-feature-titles">
                                                 <h3 class="title font-size-15 font-weight-medium">Flight Type</h3>
-                                                <span class="font-size-13">Economy</span>
+                                                <span class="font-size-13">@Model.Classes</span>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -179,17 +177,18 @@
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
+                                   @*  <div class="col-lg-4 responsive-column">
                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
                                                 <i class="la la-building"></i>
                                             </div>
                                             <div class="single-feature-titles">
                                                 <h3 class="title font-size-15 font-weight-medium">Base Fare</h3>
-                                                <span class="font-size-13">$320.00</span>
+                                                <span class="font-size-13">%18</span>
                                             </div>
                                         </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
+                                    </div> *@<!-- end col-lg-4 -->
+
                                     <div class="col-lg-4 responsive-column">
                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
@@ -197,7 +196,7 @@
                                             </div>
                                             <div class="single-feature-titles">
                                                 <h3 class="title font-size-15 font-weight-medium">Taxes & Fees</h3>
-                                                <span class="font-size-13">$300.00</span>
+                                                <span class="font-size-13">%20 of Each Ticktes</span>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -210,7 +209,8 @@
                         <div id="inflight-features" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-30px">
                                 <h3 class="title font-size-20">Inflight Features</h3>
-                                <p class="pt-3">Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet sagittis elit et vehicula. Cras viverra posuere condimentum. Donec urna arcu, venenatis quis augue sit amet, mattis gravida nunc.</p>
+                                <p class="pt-3">Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet sagittis elit
+                                    et vehicula. Cras viverra posuere condimentum. Donec urna arcu, venenatis quis augue sit amet, mattis gravida nunc.</p>
                                 <div class="inflight-content-item pt-4">
                                     <div class="row">
                                         <div class="col-lg-4 responsive-column">
@@ -407,7 +407,9 @@
                                         </div><!-- end col-lg-4 -->
                                     </div><!-- end row -->
                                 </div>
-                                <p>Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet sagittis elit et vehicula. Cras viverra posuere condimentum. Donec urna arcu, venenatis quis augue sit amet, mattis gravida nunc. Integer faucibus, tortor a tristique adipiscing, arcu metus luctus libero, nec vulputate risus elit id nibh.</p>
+                                <p>Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet 
+                                    sagittis elit et vehicula. Cras viverra posuere condimentum.Donec urna arcu, venenatis quis augue sit amet, mattis 
+                                    gravida nunc. Integer faucibus, tortor a tristique adipiscing, arcu metus luctus libero, nec vulputate risus elit id nibh.</p>
 
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
@@ -425,7 +427,7 @@
                             <div class="sidebar-widget-item">
                                 <div class="sidebar-book-title-wrap mb-3">
                                     <h3>Popular</h3>
-                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1">$399.00</span> <span class="before-price">$412.00</span></p>
+                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1">@Model.Price</span> <span class="before-price">$412.00</span></p>
                                 </div>
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">

@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="~/css/jquery-ui.css">
     <link rel="stylesheet" href="~/css/flag-icon.min.css">
     <link rel="stylesheet" href="~/css/style.css">
+
+    @RenderSection("Styles", false)
+
 </head>
 <body class="section-bg">
     <!-- start cssload-loader -->
@@ -231,5 +234,7 @@
     <script src="~/js/jquery.ripples-min.js"></script>
     <script src="~/js/main.js"></script>
 
+
+    @RenderSection("Scripts", false)
     </body>
     </html>

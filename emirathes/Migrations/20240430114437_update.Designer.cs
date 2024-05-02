@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using emirathes.Models;
 
@@ -11,9 +12,11 @@ using emirathes.Models;
 namespace emirathes.Migrations
 {
     [DbContext(typeof(AppDbContent))]
-    partial class AppDbContentModelSnapshot : ModelSnapshot
+    [Migration("20240430114437_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,10 +58,6 @@ namespace emirathes.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stop")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
