@@ -26,6 +26,8 @@ namespace emirathes.Areas.Admin.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -45,57 +47,29 @@ namespace emirathes.Areas.Admin.Controllers
 
             tickts.ImgUrl = filename;
 
-
-
-
-
-
-
             appDbContent.Ticktes.Add(tickts);
             appDbContent.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
-        {
-            if (id == 0)
-            {
-                return NotFound();
-            }
-            var tickts = appDbContent.Ticktes.Find(id);
-            if (tickts != null)
-            {
-                appDbContent.Ticktes.Remove(tickts);
-                appDbContent.SaveChanges();
-            }
-            return RedirectToAction("Index");
-
-        }
-
-        //[HttpGet]
-        //public JsonResult Edit(int id)
+        //public IActionResult Delete(int id)
         //{
         //    if (id == 0)
         //    {
-        //        return Json;
+        //        return NotFound();
         //    }
-        //    var model = appDbContent.Ticktes.FirstOrDefault(x => x.Id == id);
-        //    if (model == null)
+        //    var tickts = appDbContent.Ticktes.Find(id);
+        //    if (tickts != null)
         //    {
-        //        return RedirectToAction("Index");
-
+        //        appDbContent.Ticktes.Remove(tickts);
+        //        appDbContent.SaveChanges();
         //    }
-        //    return View(model);
+        //    return RedirectToAction("Index");
 
         //}
 
-
-
-
-
-
-        [HttpGet]
-        public JsonResult Edit(int id)
+      
+        public JsonResult Delete(int id)
         {
             if (id == 0)
             {
@@ -103,17 +77,74 @@ namespace emirathes.Areas.Admin.Controllers
                 {
                     status = 400
                 });
+            }
+
+            var slider = appDbContent.Ticktes.Find(id); //axtarib tapiram
+            if (slider != null)
+            {
+                if (slider.IsAvailable == true)
+                {
+                slider.IsAvailable = false;
+                }
+                else
+                {
+                    slider.IsAvailable = true;
+                }
+                appDbContent.SaveChanges();
+            }
+
+            return Json(new
+            {
+                status = 200
+            });
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        public IActionResult Edit(int id)
+        {
+            if (id == 0)
+            {
+                return View("index");
             }
             var model = appDbContent.Ticktes.FirstOrDefault(x => x.Id == id);
             if (model == null)
             {
-                return Json(new
-                {
-                    status = 400
-                });
+                return RedirectToAction("Index");
+
             }
-            return Json(model);
+            return View(model);
+
         }
+
+        
+        //public IActionResult Edit(Tickts tickts)
+        //{
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(tickts);
+        //    }
+        //    appDbContent.Ticktes.Update(tickts);
+        //    appDbContent.SaveChanges();
+
+        //    return RedirectToAction("Index");
+
+        //}
 
 
 
@@ -138,7 +169,8 @@ namespace emirathes.Areas.Admin.Controllers
 
                 oldSlider.ImgUrl = filename;
             }
-            oldSlider.Destiantion = tickts.Destiantion;
+            oldSlider.From = tickts.From;
+            oldSlider.To = tickts.To;
             oldSlider.Way = tickts.Way;
             oldSlider.Classes = tickts.Classes;
             oldSlider.FlightNumber = tickts.FlightNumber;
@@ -147,6 +179,7 @@ namespace emirathes.Areas.Admin.Controllers
             oldSlider.LandigTime = tickts.LandigTime;
             oldSlider.Time = tickts.Time;
             oldSlider.Stop = tickts.Stop;
+            oldSlider.IsAvailable = tickts.IsAvailable;
 
 
 

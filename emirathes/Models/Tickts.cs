@@ -7,8 +7,12 @@ namespace emirathes.Models
     public class Tickts
     {
         public int Id { get; set; }
+       
         [Required]
-        public string Destiantion { get; set; }
+        public string From { get; set; }
+        [Required]
+        public string To { get; set; }
+
         [Required]
         public string Way { get; set; }
         [Required]

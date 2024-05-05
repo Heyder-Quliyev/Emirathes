@@ -54,7 +54,7 @@
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26">@Model.Destiantion</h3>
+                                <h3 class="title font-size-26">@Model.From/@Model.To</h3>
                                 <div class="d-flex align-items-center pt-2">
                                     <p class="mr-2">@Model.Way</p>
                                     <p>
@@ -445,9 +445,9 @@
                                             <div class="form-group">
                                                 <div class="select-contain w-auto">
                                                     <select class="select-contain-select">
-                                                        <option value="first">First class</option>
-                                                        <option value="business">Business</option>
-                                                        <option value="premium">Premium economy</option>
+                                                       @*  <option value="@Model.Classes">@Model.Classes</option> *@
+                                                        <option value="Business">Business</option>
+                                                        <option value="First">First</option>
                                                         <option value="">Economy/Coach</option>
                                                     </select>
                                                 </div>
@@ -457,15 +457,24 @@
                                 </div>
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">
-                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                    <label class="font-size-16">Adults <span>Age 18+</span></label>
-                                    <div class="qtyBtn d-flex align-items-center">
-                                        <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
-                                        <div class="qtyInc"><i class="la la-plus"></i></div>
-                                    </div>
-                                </div><!-- end qty-box -->
-                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+
+                                @foreach (var item in ViewBag.Types)
+                                {
+                                    <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                        <label class="font-size-16">@item.Name <span>@item.Description</span></label>
+                                        <div class="qtyBtn d-flex align-items-center">
+                                            <div class="qtyDec"><i class="la la-minus"></i></div>
+                                            <input type="text" name="qtyInput" value="0">
+                                            <div class="qtyInc"><i class="la la-plus"></i></div>
+                                        </div>
+                                    </div><!-- end qty-box -->
+                                }
+
+
+
+
+                                @*
+                                   <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                     <label class="font-size-16">Children <span>2-12 years old</span></label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
@@ -473,17 +482,20 @@
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
+                              
                                 <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                     <label class="font-size-16">Infants <span>0-2 years old</span></label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
                                         <input type="text" name="qtyInput" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
-                                    </div>
+                                    </div> *@
+
+                                    
                                 </div><!-- end qty-box -->
                             </div><!-- end sidebar-widget-item -->
                             <div class="btn-box pt-2">
-                                <a href="flight-booking.html" class="theme-btn text-center w-100 mb-2"><i class="la la-shopping-cart mr-2 font-size-18"></i>Book Now</a>
+                            <a asp-controller="Home" asp-action="FlightBooking" class="theme-btn text-center w-100 mb-2"><i class="la la-shopping-cart mr-2 font-size-18"></i>Book Now</a>
                                 <a href="#" class="theme-btn text-center w-100 theme-btn-transparent"><i class="la la-heart-o mr-2"></i>Add to Wishlist</a>
                                 <div class="d-flex align-items-center justify-content-between pt-2">
                                     <a href="#" class="btn theme-btn-hover-gray font-size-15" data-toggle="modal" data-target="#sharePopupForm"><i class="la la-share mr-1"></i>Share</a>

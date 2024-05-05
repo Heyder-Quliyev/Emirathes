@@ -10,5 +10,6 @@ namespace emirathes.Models
 
         public DbSet<Tickts> Ticktes { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Passengers> Passengers { get; set; }
     }
 }

@@ -30,7 +30,14 @@ namespace emirathes.Controllers
 
         public IActionResult FlightSingle(int id)
         {
+            ViewBag.Types= appDbContent.Passengers.ToList();
             return View(appDbContent.Ticktes.Find(id));
+        }
+
+        public IActionResult FlightBooking()
+        {
+            return View();
+
         }
 
 
