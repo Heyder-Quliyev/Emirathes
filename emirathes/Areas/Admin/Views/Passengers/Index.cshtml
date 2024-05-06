@@ -4,7 +4,7 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-success mt-2 mb-2 ml-3" data-toggle="modal" data-target="#exampleModal">
     Create
 </button>
 
@@ -13,7 +13,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Rule</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -76,6 +76,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Name</th>
                     <th scope="col">Percentage</th>
+                    <th scope="col">Operation</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -142,7 +144,7 @@
 
 
 
-@* @section Scripts {
+ @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
 
     <script>
@@ -193,35 +195,39 @@
                 })
             });
         });
-
-        $(document).ready(() => {
-            //Edit(Get)
-            $(document).on('click', '.editBtn', (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                $.ajax({
-                    url: `/Admin/Passengers/create/${id}`,
-                    type: 'GET',
-                    success: (response) => {
-                        console.log(response)
-                        if (response.hasOwnProperty('status') && response.status === 400) {
-                            alert('Not Found');
-                        }
-                        else {
-                            console.log(response);
-                            $('#SliderEditForm input[name="Id"]').val(response.id);
-                            $('#SliderEditForm input[name="Description"]').val(response.description);
-                            $('#SliderEditForm input[name="Name"]').val(response.Name);
-                            $('#SliderEditForm input[name="Percentage"]').val(response.percentage);
-
-                        }
-                    }
-                });
-            });
+</script>
+ }
 
 
-        });
+@* 
+//         $(document).ready(() => {
+//             //Edit(Get)
+//             $(document).on('click', '.editBtn', (e) => {
+//                 const id = $(e.currentTarget).data('id');
+
+//                 $.ajax({
+//                     url: `/Admin/Passengers/create/${id}`,
+//                     type: 'GET',
+//                     success: (response) => {
+//                         console.log(response)
+//                         if (response.hasOwnProperty('status') && response.status === 400) {
+//                             alert('Not Found');
+//                         }
+//                         else {
+//                             console.log(response);
+//                             $('#SliderEditForm input[name="Id"]').val(response.id);
+//                             $('#SliderEditForm input[name="Description"]').val(response.description);
+//                             $('#SliderEditForm input[name="Name"]').val(response.Name);
+//                             $('#SliderEditForm input[name="Percentage"]').val(response.percentage);
+
+//                         }
+//                     }
+//                 });
+//             });
 
 
-    </script>
-} *@
+//         });
+
+
+//     *@
+ 

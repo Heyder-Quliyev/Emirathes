@@ -1,0 +1,87 @@
+﻿@model Products
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card job-filter">
+                    <div class="card-body p-3">
+
+                        <form class="row" method="post" asp-area="admin" asp-controller="products" asp-action="create" enctype="multipart/form-data">
+                            @Html.AntiForgeryToken()
+                            <div class="col-md-3">
+                                <label>
+                                    Title
+                                </label>
+                                <input asp-for="Title" type="text" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3" style="width:304px; height:38px">
+                                
+                                <label>
+                                    Baggage
+                                </label>
+                                <select asp-for="Baggage" type="text" class="form-select" >
+                                    <option value="2x23 kg">2x23 kg</option>
+                                    <option value="2x32 kg">2x32 kg</option>
+
+                                </select>
+@*                                 <input asp-for="Description" type="text" class="form-control" />
+ *@                                <span asp-validation-for="Baggage" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-md-3" style="width:304px; height:38px">
+                                
+                                <label>
+                                    Cabin Baggage
+                                </label>
+                                <select asp-for="CabinBaggage" type="text" class="form-select" >
+                                    <option value="1x7 kg">1x7 kg</option>
+                                    <option value="2x7 kg">2x7 kg</option>
+
+                                </select>
+@*                                 <input asp-for="CabinBaggage" type="text" class="form-control" />
+ *@                                <span asp-validation-for="CabinBaggage" class="text-danger"></span>
+                                                            
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <label>
+                                    Price
+                                </label>
+                                <input type="text" asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Category
+                                </label>
+                                <select class="form-select" asp-for="CategoryId">
+                                    @foreach (var item in ViewBag.Category)
+                                    {
+                                        <option value="@item.Id">@item.TicketsClassName</option>
+
+                                    }    
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-success mt-3 btn-block">Add database</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div><!-- End Page-cont
