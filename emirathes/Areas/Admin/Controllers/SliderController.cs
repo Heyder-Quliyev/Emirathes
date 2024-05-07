@@ -68,7 +68,7 @@ namespace emirathes.Areas.Admin.Controllers
 
         //}
 
-      
+
         public JsonResult Delete(int id)
         {
             if (id == 0)
@@ -84,7 +84,7 @@ namespace emirathes.Areas.Admin.Controllers
             {
                 if (slider.IsAvailable == true)
                 {
-                slider.IsAvailable = false;
+                    slider.IsAvailable = false;
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace emirathes.Areas.Admin.Controllers
 
 
 
-        
+
         public IActionResult Edit(int id)
         {
             if (id == 0)
@@ -131,7 +131,7 @@ namespace emirathes.Areas.Admin.Controllers
 
         }
 
-        
+
         //public IActionResult Edit(Tickts tickts)
         //{
 

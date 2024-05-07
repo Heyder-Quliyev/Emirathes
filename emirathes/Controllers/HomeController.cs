@@ -30,7 +30,7 @@ namespace emirathes.Controllers
 
         public IActionResult FlightSingle(int id)
         {
-            ViewBag.Types= appDbContent.Passengers.ToList();
+            ViewBag.Types = appDbContent.Passengers.ToList();
             return View(appDbContent.Ticktes.Find(id));
         }
 
@@ -49,7 +49,7 @@ namespace emirathes.Controllers
 
         public IActionResult Privacy()
         {
-            return View(appDbContent.Ticktes.Where(x=>x.IsAvailable !=false).ToList());
+            return View(appDbContent.Ticktes.Where(x => x.IsAvailable != false).ToList());
         }
 
 

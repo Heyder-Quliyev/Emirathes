@@ -15,7 +15,7 @@ namespace emirathes.Areas.Admin.Controllers
         public PassengersController(AppDbContent _appDbContent)
         {
             appDbContent = _appDbContent;
-           
+
         }
 
         public IActionResult Create()

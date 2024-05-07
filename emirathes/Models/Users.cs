@@ -1,13 +1,16 @@
-﻿namespace emirathes.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+
+namespace emirathes.Models
 {
     public class Users
     {
+        [Key]
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public int Contact { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ImgUrl { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        [ValidateNever]
+        public List<Order> Orders { get; set; }
 
     }
 }

@@ -42,6 +42,29 @@ namespace emirathes.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("emirathes.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("emirathes.Models.Passengers", b =>
                 {
                     b.Property<int>("Id")
@@ -166,28 +189,36 @@ namespace emirathes.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Contact")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImgUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("emirathes.Models.Order", b =>
+                {
+                    b.HasOne("emirathes.Models.Products", "Products")
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("emirathes.Models.Users", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Products");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("emirathes.Models.Products", b =>
@@ -204,6 +235,16 @@ namespace emirathes.Migrations
             modelBuilder.Entity("emirathes.Models.Categories", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("emirathes.Models.Products", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("emirathes.Models.Users", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

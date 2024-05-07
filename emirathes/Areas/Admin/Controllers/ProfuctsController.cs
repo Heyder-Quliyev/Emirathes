@@ -59,7 +59,7 @@ namespace emirathes.Areas.Admin.Controllers
         public IActionResult Edit(Products products)
         {
             ViewBag.Categories = appDbContent.Categories.ToList();
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(products);
             }
@@ -86,7 +86,7 @@ namespace emirathes.Areas.Admin.Controllers
 
 
 
-            public JsonResult Delete(int id)
+        public JsonResult Delete(int id)
         {
             if (id == 0)
             {

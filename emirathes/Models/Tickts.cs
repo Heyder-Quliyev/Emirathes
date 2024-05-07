@@ -38,6 +38,5 @@ namespace emirathes.Models
 
         public bool IsAvailable { get; set; } = false;
 
-       //public IFormFile FormFile { get; set; }  
     }
 }

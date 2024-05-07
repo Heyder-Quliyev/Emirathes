@@ -20,15 +20,23 @@
                                 <label>
                                     Title
                                 </label>
-                                <input asp-for="Title" type="text" class="form-control" />
+                                <br />
+                                <select asp-for="Title" type="text" class="form-select" style="width:200px; height:38px">
+                                    <option value="Economy Class">Economy Class</option>
+                                    <option value="Business Class">Business Class</option>
+                                    <option value="First Class">First Class</option>
+
+
+                                </select>
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
-                            <div class="col-md-3" style="width:304px; height:38px">
+                            <div class="col-md-3">
                                 
                                 <label>
                                     Baggage
                                 </label>
-                                <select asp-for="Baggage" type="text" class="form-select" >
+                                <br/>
+                                <select asp-for="Baggage" type="text" class="form-select" style="width:200px; height:38px">
                                     <option value="2x23 kg">2x23 kg</option>
                                     <option value="2x32 kg">2x32 kg</option>
 
@@ -38,12 +46,12 @@
                             </div>
 
 
-                            <div class="col-md-3" style="width:304px; height:38px">
+                            <div class="col-md-3">
                                 
                                 <label>
                                     Cabin Baggage
                                 </label>
-                                <select asp-for="CabinBaggage" type="text" class="form-select" >
+                                <select asp-for="CabinBaggage" type="text" class="form-select" style="width:200px; height:38px">
                                     <option value="1x7 kg">1x7 kg</option>
                                     <option value="2x7 kg">2x7 kg</option>
 
@@ -65,7 +73,8 @@
                                 <label>
                                     Category
                                 </label>
-                                <select class="form-select" asp-for="CategoryId">
+                                <br />
+                                <select class="form-select" asp-for="CategoryId" style="width:200px; height:38px">
                                     @foreach (var item in ViewBag.Category)
                                     {
                                         <option value="@item.Id">@item.TicketsClassName</option>
