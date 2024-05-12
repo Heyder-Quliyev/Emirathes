@@ -51,12 +51,8 @@
                                             <label>
                                                 Direction
                                             </label>
-                                            <select name="Way" type="text" class="form-select" >
-                                                <option value="One Way">One Way</option>
-                                                <option value="Round-Trip">Round-Trip</option>
-                                            </select>
-
-                                            @* <input name="Way" type="text" class="form-control" /> *@
+                                        
+                                            <input name="Way" type="text" class="form-control" />
 
                                         </div>
 
@@ -64,17 +60,7 @@
                                             <label>
                                                 Class
                                             </label>
-                                            @* <input name="Classes" type="text" class="form-control" /> *@
-
-
-
-                                            <select name="Classes" type="text" class="form-select" >
-                                                <option value="Economy Class">Economy Class</option>
-                                                <option value="Business Class">Business Class</option>
-                                                <option value="First Class">First Class</option>
-                                            </select>
-
-
+                                            <input name="Classes" type="text" class="form-control" />
 
                                         </div>
 
@@ -84,15 +70,7 @@
                                             <label>
                                                 Stops
                                             </label>
-
-                                            <select name="Stop" type="text" class="form-select">
-                                                <option value="Non Stop"> Non Stop</option>
-                                                <option value="1 Stop">1 Stop</option>
-                                                <option value="2 Stop">2 Stop</option>
-                                                <option value="3 Stop">3 Stop</option>
-                                            </select>
-
-                                            @* <input name="Way" type="text" class="form-control" /> *@
+                                            <input name="Stop" type="text" class="form-control" />
 
                                         </div>
 
@@ -224,19 +202,24 @@
                                     </td>
 
                                     <td>
-                                            @if (item.IsAvailable)
-                                            {
-                                            <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                
-                                            }else{
-                                                <a class="deleteBtn btn btn-primary" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Active</a>
-                                            }
-                                            <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                            @* <button data-id="@item.Id" type="button" class="editBtn btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit">
-                                                Edit
-                                            </button> *@
+
+                                       
+                                        <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>                    
+                                        <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                          
                                             
                                     </td>
+                                    @*  @if (item.IsAvailable)
+                                {
+                                <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Deactive</a>
+
+                                }else{
+                                <a class="deleteBtn btn btn-primary" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Active</a>
+                                }
+                                <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
+                                    @* <button data-id="@item.Id" type="button" class="editBtn btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit">
+                                Edit
+                                </button> *@
                                 </tr>
                             }
 
@@ -248,120 +231,6 @@
     </div><!-- end col-lg-12 -->
 </div><!-- end row -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="SliderEditForm" class="row" style="width: 500px;" method="post" asp-area="Admin" asp-controller="Slider" asp-action="Edit">
-
-                    @Html.AntiForgeryToken()
-                    <div class="col-md-6">
-                        <label>
-                            From
-                        </label>
-                        <input name="From" type="text" class="form-control" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            To
-                        </label>
-                        <input name="To" type="text" class="form-control" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Direction
-                        </label>
-
-                        <input name="Way" type="text" class="form-control" />
-
-                        <span class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Class
-                        </label>
-                        <input name="Classes" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Flight Number
-                        </label>
-                        <input name="FlightNumber" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Price
-                        </label>
-                        <input name="Price" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Take Off Time
-                        </label>
-                        <input name="Date" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Landing Time
-                        </label>
-                        <input name="LandigTime" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Total Flight Time
-                        </label>
-                        <input name="Time" type="text" class="form-control" />
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>
-                            Images
-                        </label>
-                        <input name="File" type="file" class="form-control" />
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button form="SliderEditForm" type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-            // --------------------//
-        </div>
-    </div>
-</div>
 
      @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>

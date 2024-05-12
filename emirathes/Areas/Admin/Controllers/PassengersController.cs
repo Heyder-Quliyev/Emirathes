@@ -2,6 +2,7 @@
 using emirathes.Migrations;
 using emirathes.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace emirathes.Areas.Admin.Controllers
 {
@@ -43,29 +44,28 @@ namespace emirathes.Areas.Admin.Controllers
 
 
 
-        public IActionResult Delete(int id)
-        {
-            if (id == 0)
-            {
-                return NotFound();
-            }
-            var Passengers = appDbContent.Passengers.Find(id);
-            if (Passengers != null)
-            {
-                appDbContent.Passengers.Remove(Passengers);
-                appDbContent.SaveChanges();
-            }
-            return RedirectToAction("Index");
+        //public IActionResult Delete(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var Passengers = appDbContent.Passengers.Find(id);
+        //    if (Passengers != null)
+        //    {
+        //        appDbContent.Passengers.Remove(Passengers);
+        //        appDbContent.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
 
-        }
-
+        //}
 
 
 
 
 
         [HttpGet]
-        public JsonResult Edit(int id)
+        public JsonResult Delete(int id)
         {
             if (id == 0)
             {
@@ -74,16 +74,61 @@ namespace emirathes.Areas.Admin.Controllers
                     status = 400
                 });
             }
+
+            var passengers = appDbContent.Passengers.Find(id); //axtarib tapiram
+            if (passengers != null)
+            {
+                appDbContent.Passengers.Remove(passengers);
+                appDbContent.SaveChanges();
+                return Json(new
+                {
+                    status = 200
+                });
+            }
+            return Json(new
+            {
+                status = 400
+            });
+
+        }
+
+        
+
+        public IActionResult Edit(int id)
+        {
+            if (id == 0)
+            {
+                return View("index");
+            }
             var model = appDbContent.Passengers.FirstOrDefault(x => x.Id == id);
             if (model == null)
             {
-                return Json(new
-                {
-                    status = 400
-                });
+                return RedirectToAction("Index");
+
             }
-            return Json(model);
+            return View(model);
         }
+
+
+        [HttpPost]
+        public IActionResult Edit(Passengers passengers)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(passengers);
+            }
+            appDbContent.Passengers.Update(passengers);
+            appDbContent.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
+
+
+
+
+
 
 
 

@@ -20,7 +20,7 @@ namespace emirathes.Models
         [Required]
         public string FlightNumber { get; set; }
         [Required]
-        public string Price { get; set; }
+        public string Price { get; set; } 
         [Required]
         public DateTime Date { get; set; }
         [Required]
@@ -33,10 +33,9 @@ namespace emirathes.Models
         [NotMapped]
         [ValidateNever]
         public IFormFile File { get; set; }
-
-
-
         public bool IsAvailable { get; set; } = false;
+
+
 
     }
 }

@@ -1,0 +1,43 @@
+﻿@model LoginVM
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="container" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="form-title mt-3 text-center" style="font-family: Lucida Grande">Log In</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Account" asp-action="Login" method="post">
+
+                        <div class="form-group">
+                            <label for="username">Username or Email:</label>
+                            <input asp-for="Email" type="email" class="form-control" required>
+                            <span style="color:red" asp-validation-for="Email"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+
+                            <input asp-for="Password" type="password" class="form-control" required>
+                            <span style="color:red" asp-validation-for="Password"></span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger btn-block mb-3">Login</button>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Don't you have any account yet? <a asp-controller="Account" asp-action="Register">Register</a></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

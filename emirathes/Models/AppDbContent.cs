@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace emirathes.Models
 {
-    public class AppDbContent:DbContext
+    public class AppDbContent: IdentityDbContext <ProgramUsers>
     {
         public AppDbContent(DbContextOptions options) : base(options)
         {

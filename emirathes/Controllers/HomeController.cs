@@ -1,4 +1,5 @@
 ﻿using emirathes.Models;
+using emirathes.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -28,11 +29,26 @@ namespace emirathes.Controllers
         }
 
 
+        //public IActionResult FlightSingle(int id)
+        //{
+        //    //ViewBag.Category = appDbContent.Categories.ToList();
+        //    ViewBag.Types = appDbContent.Passengers.ToList();
+        //    return View(appDbContent.Ticktes.Find(id));
+        //}
+
         public IActionResult FlightSingle(int id)
         {
-            ViewBag.Types = appDbContent.Passengers.ToList();
-            return View(appDbContent.Ticktes.Find(id));
+            TicketCategoryVM views = new()
+            {
+                Tickts = appDbContent.Ticktes.FirstOrDefault(x=>x.Id == id),
+                Categories = appDbContent.Categories.ToList(),
+                Products = appDbContent.Products.ToList(),
+                Passengers = appDbContent.Passengers.ToList()
+            };
+           
+            return View(views);
         }
+
 
         public IActionResult FlightBooking()
         {

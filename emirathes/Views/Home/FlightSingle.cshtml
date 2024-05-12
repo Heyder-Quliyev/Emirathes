@@ -1,4 +1,4 @@
-﻿@model Tickts
+﻿@model TicketCategoryVM
 
 
 <section class="breadcrumb-area bread-bg-6 py-0">
@@ -54,11 +54,11 @@
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26">@Model.From/@Model.To</h3>
+                                <h3 class="title font-size-26">@Model.Tickts.From/@Model.Tickts.To</h3>
                                 <div class="d-flex align-items-center pt-2">
-                                    <p class="mr-2">@Model.Way</p>
+                                    <p class="mr-2">@Model.Tickts.Way</p>
                                     <p>
-                                        <span class="badge badge-warning text-white font-weight-medium font-size-16">@Model.Stop</span>
+                                        <span class="badge badge-warning text-white font-weight-medium font-size-16">@Model.Tickts.Stop</span>
                                     </p>
                                 </div>
                             </div><!-- end single-content-item -->
@@ -73,31 +73,118 @@
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <h3 class="title font-size-15 font-weight-medium">Flight Take off</h3>
-                                            <span class="font-size-13">@Model.Date</span>
+                                            <span class="font-size-13">@Model.Tickts.Date</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
 
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <i class="la la-clock-o text-color font-size-22"></i>
-                                            <span class="font-size-13 mt-n2">@Model.Time</span>
+                                            <span class="font-size-13 mt-n2">@Model.Tickts.Time</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
 
                                     <div class="col-lg-4 col-sm-4">
                                         <div class="single-feature-titles text-center mb-3">
                                             <h3 class="title font-size-15 font-weight-medium">Flight Landing</h3>
-                                            <span class="font-size-13">@Model.LandigTime</span>
+                                            <span class="font-size-13">@Model.Tickts.LandigTime</span>
                                         </div>
                                     </div><!-- end col-lg-4 -->
 
                                     <div class="col-lg-12">
                                         <div class="single-feature-titles text-center border-top border-bottom py-3 mb-4">
-                                            <h3 class="title font-size-15 font-weight-medium">Total flight time:<span class="font-size-13 d-inline-block ml-1 text-gray">@Model.Time</span></h3>
+                                            <h3 class="title font-size-15 font-weight-medium">Total flight time:<span class="font-size-13 d-inline-block ml-1 text-gray">@Model.Tickts.Time</span></h3>
                                         </div>
                                     </div><!-- end col-lg-12 -->
 
                                
+
+
+                                    <div id="inflight-features" class="page-scroll">
+                                        <div class="single-content-item padding-top-40px padding-bottom-30px">
+                                            <h3 class="title font-size-24 font-weight-medium">Ticket Feature</h3>
+                                            @* <p class="pt-3">Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec
+                                            eget accumsan est. Duis laoreet sagittis elit
+                                            et vehicula. Cras viverra posuere condimentum. Donec urna arcu, venenatis quis augue sit amet, mattis gravida nunc.</p> *@
+                                            <div class="inflight-content-item pt-4">
+                                                <div class="row">
+
+
+
+                                                    @foreach (var item in Model.Categories)
+                                                    {
+                                                        <div class="col-lg-4 responsive-column">
+                                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3" style="color:red">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-perforated" viewBox="0 0 16 16">
+                                                                        <path d="M4 4.85v.9h1v-.9zm7 0v.9h1v-.9zm-7 1.8v.9h1v-.9zm7 0v.9h1v-.9zm-7 1.8v.9h1v-.9zm7 0v.9h1v-.9zm-7 1.8v.9h1v-.9zm7 0v.9h1v-.9z" />
+                                                                        <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3zM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9z" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="single-feature-titles">
+
+                                                                    <h3 class="title font-size-18">@item.TicketsClassName</h3>
+
+
+                                                                </div>
+                                                            </div><!-- end single-tour-feature -->
+                                                        </div>
+
+                                                        <!-- end col-lg-4 -->
+                                                    }
+
+                                                    @foreach (var item in Model.Products)
+                                                    {
+                                                        <div class="col-lg-4 responsive-column">
+                                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3" style="color:black">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suitcase" viewBox="0 0 16 16">
+                                                                        <path d="M6 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 6 5m2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 10 5" />
+                                                                        <path d="M6.5 0a.5.5 0 0 0-.5.5V3H5a2 2 0 0 0-2 2v8a2 2 0 0 0 1.031 1.75A1.003 1.003 0 0 0 5 16a1 1 0 0 0 1-1h4a1 1 0 1 0 1.969-.25A2 2 0 0 0 13 13V5a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-.5-.5zM9 3H7V1h2zm3 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="single-feature-titles">
+
+                                                                    <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Baggage<span>@item.Baggage</span></p>
+                                                                </div>
+                                                            </div><!-- end single-tour-feature -->
+                                                        </div>
+
+                                                        <!-- end col-lg-4 -->
+                                                    }
+
+                                                    @foreach (var item in Model.Products)
+                                                    {
+                                                        <div class="col-lg-4 responsive-column">
+                                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3" style="color:black">
+                                                                    <i class="bi bi-briefcase-fill"></i>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suitcase-lg" viewBox="0 0 16 16">
+                                                                        <path d="M5 2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2h3.5A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5H14a.5.5 0 0 1-1 0H3a.5.5 0 0 1-1 0h-.5A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2zm1 0h4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H3V3zM15 12.5v-9a.5.5 0 0 0-.5-.5H13v10h1.5a.5.5 0 0 0 .5-.5m-3 .5V3H4v10z" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="single-feature-titles">
+
+                                                                    <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Cabin Baggage<span>@item.CabinBaggage</span></p>
+                                                                </div>
+                                                            </div><!-- end single-tour-feature -->
+                                                        </div>
+
+                                                        <!-- end col-lg-4 -->
+                                                    }
+
+                                                   
+
+                                                </div><!-- end row -->
+                                            </div><!-- end inflight-content-item -->
+                                        </div><!-- end single-content-item -->
+                                        <div class="section-block"></div>
+                                    </div><!-- end inflight-features -->
+
+
+
+
+
 
 
                                     <div class="col-lg-4 responsive-column">
@@ -118,7 +205,7 @@
                                             </div>
                                             <div class="single-feature-titles">
                                                 <h3 class="title font-size-15 font-weight-medium">Flight Type</h3>
-                                                <span class="font-size-13">@Model.Classes</span>
+                                                <span class="font-size-13">@Model.Tickts.Classes</span>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -206,138 +293,7 @@
 
                             <div class="section-block"></div>
                         </div><!-- end description -->
-                        <div id="inflight-features" class="page-scroll">
-                            <div class="single-content-item padding-top-40px padding-bottom-30px">
-                                <h3 class="title font-size-20">Inflight Features</h3>
-                                <p class="pt-3">Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet sagittis elit
-                                    et vehicula. Cras viverra posuere condimentum. Donec urna arcu, venenatis quis augue sit amet, mattis gravida nunc.</p>
-                                <div class="inflight-content-item pt-4">
-                                    <div class="row">
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-wifi"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">WI-FI</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-music"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Entertainment</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-television"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Television</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-tree"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Air Conditioning</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-glass"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Drink</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-gamepad"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Games</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-coffee"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Coffee</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-glass"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Wines</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-shopping-cart"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Shopping</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-cutlery"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Food</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-bed"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Comfort</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                        <div class="col-lg-4 responsive-column">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-photo"></i>
-                                                </div>
-                                                <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium">Magazines</h3>
-                                                </div>
-                                            </div><!-- end single-tour-feature -->
-                                        </div><!-- end col-lg-4 -->
-                                    </div><!-- end row -->
-                                </div><!-- end inflight-content-item -->
-                            </div><!-- end single-content-item -->
-                            <div class="section-block"></div>
-                        </div><!-- end inflight-features -->
+                        
 
 
                         <div id="fare-rules" class="page-scroll">
@@ -427,7 +383,7 @@
                             <div class="sidebar-widget-item">
                                 <div class="sidebar-book-title-wrap mb-3">
                                     <h3>Popular</h3>
-                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1">@Model.Price</span> <span class="before-price">$412.00</span></p>
+                                    <p><span class="text-form">From</span><span class="text-value ml-2 mr-1">@Model.Tickts.Price</span> <span class="before-price">$412.00</span></p>
                                 </div>
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">
@@ -458,7 +414,7 @@
                             </div><!-- end sidebar-widget-item -->
                             <div class="sidebar-widget-item">
 
-                                @foreach (var item in ViewBag.Types)
+                                @foreach (var item in Model.Passengers)
                                 {
                                     <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                         <label class="font-size-16">@item.Name <span>@item.Description</span></label>

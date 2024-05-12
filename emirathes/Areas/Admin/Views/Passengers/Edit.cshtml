@@ -1,0 +1,67 @@
+﻿@model Passengers
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-box">
+            <div class="form-title-wrap">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h3 class="title">Create Feature</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="table-form table-responsive">
+
+
+                    <form class="row" style="width: 1000px;" method="post" asp-area="Admin" asp-controller="Passengers" asp-action="Edit" enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-md-4">
+                            <label>
+                                Description
+                            </label>
+                            <br />
+                            <input asp-for="Description" type="text" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>
+                                Feature Name
+                            </label>                            
+                            <input asp-for="Name" type="text" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>
+                                Percentage
+                            </label>
+                            <input asp-for="Percentage" type="text" class="form-control" />
+                            <span asp-validation-for="Percentage" class="text-danger"></span>
+                        </div>
+
+
+                       
+
+                        <div class="col-md-4">
+                            <label>
+                                Reviewed
+                            </label>
+                            <input asp-for="IsPassenger" type="checkbox" class="form-check" />
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-success mt-3 btn-block">Edit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div><!-- end form-box -->
+    </div><!-- end col-lg-12 -->
+</div><!-- end row -->

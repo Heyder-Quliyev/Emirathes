@@ -20,6 +20,8 @@ namespace emirathes.Areas.Admin.Controllers
             return View(appDbContent.Products.Include(x => x.Category).ToList());
         }
 
+
+
         public IActionResult Create()
         {
             ViewBag.Category = appDbContent.Categories.ToList();
@@ -45,7 +47,7 @@ namespace emirathes.Areas.Admin.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Category = appDbContent.Categories.ToList();
@@ -70,8 +72,35 @@ namespace emirathes.Areas.Admin.Controllers
         }
 
 
+        //public IActionResult Edit(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return View("index");
+        //    }
+        //    var model = appDbContent.Products.FirstOrDefault(x => x.Id == id);
+        //    if (model == null)
+        //    {
+        //        return RedirectToAction("Index");
 
+        //    }
+        //    return View(model);
 
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(Products products)
+        //{
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(products);
+        //    }
+        //    appDbContent.Products.Update(products);
+        //    appDbContent.SaveChanges();
+        //    return RedirectToAction("Index");
+
+        //}
 
 
 

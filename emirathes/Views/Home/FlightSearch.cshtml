@@ -9,93 +9,14 @@
                         <div class="section-heading">
                             <h2 class="sec__title text-white">Flight Search Result</h2>
                         </div>
-                        <div class="search-fields-container margin-top-30px">
-                            <div class="contact-form-action">
-                                <form action="#" class="row">
-                                    <div class="col-lg-3 col-sm-6 pr-0">
-                                        <div class="input-box">
-                                            <label class="label-text">Destination</label>
-                                            <div class="form-group">
-                                                <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" type="text" placeholder="City or airport">
-                                            </div>
-                                        </div>
-                                    </div><!-- end col-lg-3 -->
-                                    <div class="col-lg-3 col-sm-6 pr-0">
-                                        <div class="input-box">
-                                            <label class="label-text">Check in</label>
-                                            <div class="form-group">
-                                                <span class="la la-calendar form-icon"></span>
-                                                <input class="date-range form-control" type="text" name="daterange-single">
-                                            </div>
-                                        </div>
-                                    </div><!-- end col-lg-3 -->
-                                    <div class="col-lg-3 col-sm-6 pr-0">
-                                        <div class="input-box">
-                                            <label class="label-text">Check out</label>
-                                            <div class="form-group">
-                                                <span class="la la-calendar form-icon"></span>
-                                                <input class="date-range form-control" type="text" name="daterange-single">
-                                            </div>
-                                        </div>
-                                    </div><!-- end col-lg-3 -->
-                                    <div class="col-lg-3 col-sm-6">
-                                        <div class="input-box">
-                                            <label class="label-text">Passengers</label>
-                                            <div class="form-group">
-                                                <div class="select-contain select-contain-shadow w-auto">
-                                                    <select class="select-contain-select">
-                                                        <option value="0">Select Passenger</option>
-                                                        <option value="1">1 Passenger</option>
-                                                        <option value="2">2 Passengers</option>
-                                                        <option value="3">3 Passengers</option>
-                                                        <option value="4">4 Passengers</option>
-                                                        <option value="5">5 Passengers</option>
-                                                        <option value="6">6 Passengers</option>
-                                                        <option value="7">7 Passengers</option>
-                                                        <option value="8">8 Passengers</option>
-                                                        <option value="9">9 Passengers</option>
-                                                        <option value="10">10 Passengers</option>
-                                                        <option value="11">11 Passengers</option>
-                                                        <option value="12">12 Passengers</option>
-                                                        <option value="13">13 Passengers</option>
-                                                        <option value="14">14 Passengers</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- end col-lg-3 -->
-                                </form>
-                            </div><!-- end contact-form-action -->
-                            <div class="advanced-wrap">
-                                <a class="btn collapse-btn theme-btn-hover-gray font-size-15" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-                                    More option <i class="la la-angle-down ml-1"></i>
-                                </a>
-                                <div class="pt-3 collapse" id="collapseTwo">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="input-box">
-                                                <label class="label-text">Preferred airlines</label>
-                                                <div class="form-group">
-                                                    <div class="select-contain select-contain-shadow w-auto">
-                                                      
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col-lg-3 -->
-                                    </div><!-- end row -->
-                                </div>
-                            </div>
-                            <div class="btn-box pt-3">
-                                <a href="#" class="theme-btn">Search Now</a>
-                            </div>
-                        </div>
+                      
                     </div><!-- end search-result-content -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
         </div><!-- end container -->
+
     </div><!-- end breadcrumb-wrap -->
-    <div class="bread-svg-box">
+   <div class="bread-svg-box">
         <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
     </div><!-- end bread-svg -->
 </section>
@@ -245,15 +166,15 @@
           @foreach (var item in Model)
             {
 
-                <div class="col-lg-4 responsive-column">
+                <div class="col-lg-4 responsive-column" >
                     <div class="card-item flight-card flight--card">
                         <div class="card-img">
-                            <img src="~/uploadSlider/@item.ImgUrl" alt="flight-logo-img" style="width: 150px; height: 150px;">
+                            <img src="~/uploadSlider/@item.ImgUrl" alt="flight-logo-img" style="width: 50px; height: 50px;">
                         </div>
                         <div class="card-body">
                             <div class="card-top-title d-flex justify-content-between">
                                 <div>
-                                    <h3 class="card-title font-size-17">@item.From-@item.To</h3>
+                                    <h3 class="card-title font-size-17">@item.From - @item.To</h3>
                                     <p class="card-meta font-size-14">@item.Way</p>
                                 </div>
                                 <div>
@@ -288,9 +209,27 @@
                             </div><!-- end flight-details -->
 
 
-                            <div class="btn-box text-center">
+                          @*   <div class="container mt-5">
+                                <!-- Button trigger for collapse -->
+                                <button class="btn btn-primary mt-1" type="button" data-toggle="collapse" data-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                    Toggle Collapse
+                                </button>
+                                <!-- Collapse div -->
+                                <div class="collapse mt-1" id="collapseExample">
+                                    <div class="card card-body">
+                                        <p class= "la la-bag">@ViewBag.Baggage</p>
+                                    </div>
+                                </div>
+                            </div> *@
+
+
+                            <div class="btn-box text-center mt-2">
                                 <a asp-controller="Home" asp-action="FlightSingle" asp-route-id="@item.Id" class="theme-btn theme-btn-small w-100">View Details</a>
                             </div>
+
+
+
                         </div><!-- end card-body -->
                     </div><!-- end card-item -->
                 </div><!-- end col-lg-4 -->

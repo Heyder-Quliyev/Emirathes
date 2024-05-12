@@ -12,7 +12,6 @@ namespace emirathes.Models
         public string Baggage { get; set; }
         public string CabinBaggage { get; set; }
        
-        public double Price { get; set; }
         //siralama bele olsun
         //CategoryId sonra foreignkey sonra validate never sonra da hemin id yerlesen table
         //Siralama ferqli olanda tanimir ki hansi uchun deyirsiz foreign key
@@ -22,12 +21,6 @@ namespace emirathes.Models
         public Categories Category { get; set; }
         [ValidateNever]
         public List<Order> Orders { get; set; }
-
-
-
-
-
-
 
         public bool IsAvailable { get; set; } = false;
 

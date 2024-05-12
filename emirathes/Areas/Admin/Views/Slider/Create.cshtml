@@ -23,35 +23,8 @@
                             <label>
                                 From
                             </label>
-                            <select asp-for="From" type="text" class="form-select" style="width:304px; height:38px">
-                                <option value="DXB">Dubai International Airport (DXB)</option>
-                                <option value="JFK">John F. Kennedy International Airport (JFK)</option>
-                                <option value="LHR">London Heathrow Airport (LHR)</option>
-                                <option value="YYZ">Toronto Pearson International Airport (YYZ)</option>
-                                <option value="CDG">Paris Charles de Gaulle Airport (CDG)</option>
-                                <option value="FRA">Frankfurt Airport (FRA)</option>
-                                <option value="SIN">Singapore Changi Airport (SIN)</option>
-                                <option value="HKG">Hong Kong International Airport (HKG)</option>
-                                <option value="SYD">Sydney Kingsford Smith Airport (SYD)</option>
-                                <option value="BKK">Suvarnabhumi Airport (BKK)</option>
-                                <option value="DEL">Indira Gandhi International Airport (DEL)</option>
-                                <option value="JNB">OR Tambo International Airport (JNB)</option>
-                                <option value="LAX">Los Angeles International Airport (LAX)</option>
-                                <option value="IST">Istanbul Airport (IST)</option>
-                                <option value="AMS">Amsterdam Airport Schiphol (AMS)</option>
-                                <option value="ICN">Incheon International Airport (ICN)</option>
-                                <option value="MUC">Munich Airport (MUC)</option>
-                                <option value="PEK">Beijing Capital International Airport (PEK)</option>
-                                <option value="MIA">Miami International Airport (MIA)</option>
-                                <option value="DFW">Dallas/Fort Worth International Airport (DFW)</option>
-                                <option value="MEL">Melbourne Airport (MEL)</option>
-                                <option value="LHR">London Heathrow Airport (LHR)</option>
-                                <option value="JFK">John F. Kennedy International Airport (JFK)</option>
-                                <!-- Add more options as needed -->
-                            </select>
-
-@*                             <input asp-for="From" type="text" class="form-control" />
- *@                            <span asp-validation-for="From" class="text-danger"></span>
+                            <input asp-for="From" type="text" class="form-control" />
+                            <span asp-validation-for="From" class="text-danger"></span>
                           </div>
 
 
@@ -60,53 +33,15 @@
                             <label>
                                 To
                             </label>
-                            <select asp-for="To" type="text" class="form-select" style="width:304px; height:38px">
-                                <option value="DXB">Dubai International Airport (DXB)</option>
-                                <option value="JFK">John F. Kennedy International Airport (JFK)</option>
-                                <option value="LHR">London Heathrow Airport (LHR)</option>
-                                <option value="YYZ">Toronto Pearson International Airport (YYZ)</option>
-                                <option value="CDG">Paris Charles de Gaulle Airport (CDG)</option>
-                                <option value="FRA">Frankfurt Airport (FRA)</option>
-                                <option value="SIN">Singapore Changi Airport (SIN)</option>
-                                <option value="HKG">Hong Kong International Airport (HKG)</option>
-                                <option value="SYD">Sydney Kingsford Smith Airport (SYD)</option>
-                                <option value="BKK">Suvarnabhumi Airport (BKK)</option>
-                                <option value="DEL">Indira Gandhi International Airport (DEL)</option>
-                                <option value="JNB">OR Tambo International Airport (JNB)</option>
-                                <option value="LAX">Los Angeles International Airport (LAX)</option>
-                                <option value="IST">Istanbul Airport (IST)</option>
-                                <option value="AMS">Amsterdam Airport Schiphol (AMS)</option>
-                                <option value="ICN">Incheon International Airport (ICN)</option>
-                                <option value="MUC">Munich Airport (MUC)</option>
-                                <option value="PEK">Beijing Capital International Airport (PEK)</option>
-                                <option value="MIA">Miami International Airport (MIA)</option>
-                                <option value="DFW">Dallas/Fort Worth International Airport (DFW)</option>
-                                <option value="MEL">Melbourne Airport (MEL)</option>
-                                <option value="LHR">London Heathrow Airport (LHR)</option>
-                                <option value="JFK">John F. Kennedy International Airport (JFK)</option>
-                                <!-- Add more options as needed -->
-                            </select>
-
+                            <input asp-for="To" type="text" class="form-control" />
                             <span asp-validation-for="To" class="text-danger"></span>
                         </div>
-
-
-
-
-
-
 
                         <div class="col-md-4">
                             <label>
                                 Direction
                             </label>
-
-                            <select asp-for="Way" type="text" class="form-select" style="width:304px; height:38px">
-                                <option value="One Way">One Way</option>
-                                <option value="Round-Trip">Round-Trip</option>
-                            </select>
-
-                            @* <input asp-for="Way" type="text" class="form-control" /> *@
+                            <input asp-for="Way" type="text" class="form-control" />
                             <span asp-validation-for="Way" class="text-danger"></span>
 
                         </div>
@@ -115,15 +50,7 @@
                             <label>
                                 Class
                             </label>
-@*                             <input asp-for="Classes" type="text" class="form-control" />
- *@
-
-                            <select asp-for="Classes" type="text" class="form-select" style="width:304px; height:38px">
-                                <option value="Economy Class">Economy Class</option>
-                                <option value="Business Class">Business Class</option>
-                                <option value="First Class">First Class</option>
-                            </select>
-
+                            <input asp-for="Classes" type="text" class="form-control" />
                             <span asp-validation-for="Classes" class="text-danger"></span>
 
 
@@ -134,17 +61,8 @@
                             <label>
                                 Stops
                             </label>
-
-                            <select asp-for="Stop" type="text" class="form-select" style="width:304px; height:38px">
-                                <option value="Non Stop"> Non Stop</option>
-                                <option value="1 Stop">1 Stop</option>
-                                <option value="2 Stop">2 Stop</option>
-                                <option value="3 Stop">3 Stop</option>
-                            </select>
-
-                            @* <input asp-for="Way" type="text" class="form-control" /> *@
+                            <input asp-for="Stop" type="text" class="form-control" />
                             <span asp-validation-for="Stop" class="text-danger"></span>
-
                         </div>
 
 

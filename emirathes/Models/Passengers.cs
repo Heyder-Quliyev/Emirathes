@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace emirathes.Models
 {
@@ -10,7 +11,11 @@ namespace emirathes.Models
         public string Description { get; set; }
         [Required]
         public string Name { get; set; }
+
         [Required]
         public double Percentage { get; set; }
-    }     
+        public bool IsPassenger { get; set; } = false;
+
+
+    }
 }
