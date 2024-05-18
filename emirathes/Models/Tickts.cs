@@ -33,7 +33,7 @@ namespace emirathes.Models
         [NotMapped]
         [ValidateNever]
         public IFormFile File { get; set; }
-        public bool IsAvailable { get; set; } = false;
+        public bool IsAvailable { get; set; } = true;
 
 
 

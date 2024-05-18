@@ -3,6 +3,8 @@ using emirathes.Models;
 using emirathes.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NETCore.MailKit.Core;
+//using emirathes.Extensions;
 
 namespace emirathes.Controllers
 {
@@ -10,12 +12,18 @@ namespace emirathes.Controllers
     {
         private readonly AppDbContent appDbContent;
         private readonly UserManager<ProgramUsers> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ProgramUsers> _signInManager;
-        public AccountController(AppDbContent _appDbContent , SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager)
+        //private readonly IEmailService _emailService;
+
+
+        public AccountController(AppDbContent _appDbContent, RoleManager<IdentityRole> roleManager, SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager/*, IEmailService emailService*/)
         {
             appDbContent = _appDbContent;
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
+            //_emailService = emailService;
         }
 
 
@@ -46,7 +54,13 @@ namespace emirathes.Controllers
             var result = await _userManager.CreateAsync(programUsers, model.Password);
             if (result.Succeeded)
             {
-               return RedirectToAction("Index", "Home"); // redirect to action`i tek yazma. Qabaginda return yaz hemishe
+                //var token = await _userManager.GenerateEmailConfirmationTokenAsync(programUsers);
+                //var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = programUsers.Id, token = token }, Request.Scheme);
+                //await _emailService.SendEmailAsync(model.Email, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
+
+
+               await _userManager.AddToRoleAsync(programUsers, "User");
+                return RedirectToAction("Index", "Home"); // redirect to action`i tek yazma. Qabaginda return yaz hemishe
             }
             foreach (var item in result.Errors)
             {
@@ -62,28 +76,84 @@ namespace emirathes.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Something incorrent");
+                ModelState.AddModelError("", "Something Went Wrong");
+                return View(model);
             }
 
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
-                if (!result.Succeeded)
+                if (result.Succeeded)
                 {
-                    ModelState.AddModelError("", "Password or email incorrent");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Password or email incorrect");
                 }
             }
-            //_emailService.SendEmailAsync()
+            else
+            {
+                ModelState.AddModelError("", "User not found");
+            }
+            //emailService.SendEmailAsync();
+            return View(model);
+        }
+
+
+
+
+
+
+
+        //[HttpPost]
+        //public async Task<IActionResult> Login(LoginVM model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ModelState.AddModelError("", "Something Went Wrong");
+        //        return View(model);
+        //    }
+
+        //    var user = await _userManager.FindByEmailAsync(model.Email);
+        //    if (user != null)
+        //    {
+        //        var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
+        //        if (!result.Succeeded)
+        //        {
+        //            ModelState.AddModelError("", "Password or email incorrent");
+        //        }
+        //    }
+        //    //emailService.SendEmailAsync();
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
 
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await _signInManager.SignOutAsync();
-        //    return RedirectToAction("Index", "Home");
-        //}
+        public async Task SeedRoles()
+        {
+           if(! await _roleManager.RoleExistsAsync(roleName: "Admin"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(roleName: "Admin"));
+            }
+
+            if (!await _roleManager.RoleExistsAsync(roleName: "User"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(roleName: "User"));
+            }
+            }
+
+
+        public async Task SeedAdmin()
+        {
+           
+            }
 
 
 
@@ -101,5 +171,6 @@ namespace emirathes.Controllers
 
 
 
-    }
+
+        }
 }

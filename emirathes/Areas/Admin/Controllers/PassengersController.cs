@@ -32,10 +32,10 @@ namespace emirathes.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Passengers passengers)
         {
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(passengers);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View(passengers);
+            }
 
             appDbContent.Passengers.Add(passengers);
             appDbContent.SaveChanges();

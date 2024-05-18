@@ -14,7 +14,7 @@ namespace emirathes.Models
 
         [Required]
         public double Percentage { get; set; }
-        public bool IsPassenger { get; set; } = false;
+        public bool IsPassenger { get; set; } = true;
 
 
     }

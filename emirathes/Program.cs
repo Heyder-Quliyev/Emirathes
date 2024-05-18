@@ -1,6 +1,8 @@
+using DocuSign.eSign.Model;
 using emirathes.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NETCore.MailKit.Core;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,10 +35,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon do?rulamas?
 });
 
+//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(""));
+
 //builder.Services.AddScoped<IEmailService, EmailService>();
-
-
-
 
 
 var app = builder.Build();

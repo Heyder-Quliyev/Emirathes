@@ -1,6 +1,7 @@
 ﻿using emirathes.Models;
 using emirathes.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using NETCore.MailKit.Core;
 using System.Diagnostics;
 
 namespace emirathes.Controllers
@@ -12,9 +13,7 @@ namespace emirathes.Controllers
         {
             appDbContent = _appDbContent;
         }
-
-
-
+     
         public IActionResult SignUp()
         {
             return View();

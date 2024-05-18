@@ -22,7 +22,7 @@ namespace emirathes.Models
         [ValidateNever]
         public List<Order> Orders { get; set; }
 
-        public bool IsAvailable { get; set; } = false;
+        public bool IsAvailable { get; set; } = true;
 
     }
 }
