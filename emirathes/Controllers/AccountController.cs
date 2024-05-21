@@ -1,10 +1,10 @@
-﻿using emirathes.Migrations;
+﻿using emirathes.Extensions;
+using emirathes.Migrations;
 using emirathes.Models;
 using emirathes.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NETCore.MailKit.Core;
-//using emirathes.Extensions;
+
 
 namespace emirathes.Controllers
 {
@@ -14,16 +14,16 @@ namespace emirathes.Controllers
         private readonly UserManager<ProgramUsers> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ProgramUsers> _signInManager;
-        //private readonly IEmailService _emailService;
+        private readonly IEmailService _emailService;
 
 
-        public AccountController(AppDbContent _appDbContent, RoleManager<IdentityRole> roleManager, SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager/*, IEmailService emailService*/)
+        public AccountController(AppDbContent _appDbContent, RoleManager<IdentityRole> roleManager, SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager, IEmailService emailService)
         {
             appDbContent = _appDbContent;
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
-            //_emailService = emailService;
+            _emailService = emailService;
         }
 
 
@@ -45,21 +45,27 @@ namespace emirathes.Controllers
             {
                 return View(model);
             }
-            ProgramUsers programUsers = new ProgramUsers
+            
+            var programUsers = new ProgramUsers
             {
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Username
             };
+            var result = await _userManager.CreateAsync(programUsers, model.Password!);
 
-            var result = await _userManager.CreateAsync(programUsers, model.Password);
             if (result.Succeeded)
             {
-                //var token = await _userManager.GenerateEmailConfirmationTokenAsync(programUsers);
-                //var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = programUsers.Id, token = token }, Request.Scheme);
-                //await _emailService.SendEmailAsync(model.Email, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
+                await _userManager.AddToRoleAsync(programUsers, "User");
+                await _signInManager.SignInAsync(programUsers, true);
 
 
-               await _userManager.AddToRoleAsync(programUsers, "User");
+
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(programUsers);
+                var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = programUsers.Id, token = token });
+                //hemishe using de hansi datani ishletdiyine bax
+                await _emailService.SendEmailAsync(model.Email!, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
+
                 return RedirectToAction("Index", "Home"); // redirect to action`i tek yazma. Qabaginda return yaz hemishe
             }
             foreach (var item in result.Errors)
@@ -102,9 +108,23 @@ namespace emirathes.Controllers
         }
 
 
-
-
-
+        public async Task<IActionResult> ConfirmEmail(string Id, string token)
+        {
+            if(Id == null || token == null)
+            {
+                return View("Error");
+            }
+            var user = await _userManager.FindByIdAsync(Id);
+            if (user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            return View("Error");
+        }
 
 
         //[HttpPost]
@@ -152,16 +172,33 @@ namespace emirathes.Controllers
 
         public async Task SeedAdmin()
         {
-           
-            }
+          
+          if (_userManager.FindByEmailAsync("heyderquliyev30@gmail.com").Result == null)
+            {
+                ProgramUsers programUser = new ProgramUsers
+                {
+                    Email = "heyderquliyev30@gmail.com",
+                    UserName = "heyderquliyev30@gmail.com"
+                };
+
+                var result = await _userManager.CreateAsync(programUser, "77heyder77");
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(programUser, "Admin");
+                    await _signInManager.SignInAsync(programUser, true);
+
+                    RedirectToAction("Index", "Home");
+                }
+                //IdentityResult result = await _userManager.CreateAsync(admin, "");
+                //if (result.Succeeded)
+                //{
+                //    _userManager.AddToRoleAsync(admin, "Admin").Wait();
+                    
+                //}
 
 
 
-
-
-
-
-
+                    }
 
 
 
@@ -173,4 +210,7 @@ namespace emirathes.Controllers
 
 
         }
+
+
+    }
 }

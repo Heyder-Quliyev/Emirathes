@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using emirathes.Controllers;
 
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace emirathes.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class SliderController : Controller
     {
         private readonly AppDbContent appDbContent;
@@ -54,75 +56,75 @@ namespace emirathes.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-            [HttpGet]
-            public JsonResult Delete(int id)
+        [HttpGet]
+        public JsonResult Delete(int id)
+        {
+            if (id == 0)
             {
-                if (id == 0)
-                {
-                    return Json(new
-                    {
-                        status = 400
-                    });
-                }
-
-                var tickts = appDbContent.Ticktes.Find(id); //axtarib tapiram
-                if (tickts != null)
-                {
-                    appDbContent.Ticktes.Remove(tickts);
-                    appDbContent.SaveChanges();
-                    return Json(new
-                    {
-                        status = 200
-                    });
-                }
-
                 return Json(new
                 {
                     status = 400
                 });
-
             }
 
-            ///BU isaviable uchun qals;n
+            var tickts = appDbContent.Ticktes.Find(id); //axtarib tapiram
+            if (tickts != null)
+            {
+                appDbContent.Ticktes.Remove(tickts);
+                appDbContent.SaveChanges();
+                return Json(new
+                {
+                    status = 200
+                });
+            }
+
+            return Json(new
+            {
+                status = 400
+            });
+
+        }
+
+        ///BU isaviable uchun qals;n
 
 
-            //public JsonResult Delete(int id)
-            //{
-            //    if (id == 0)
-            //    {
-            //        return Json(new
-            //        {
-            //            status = 400
-            //        });
-            //    }
+        //public JsonResult Delete(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return Json(new
+        //        {
+        //            status = 400
+        //        });
+        //    }
 
-            //    var slider = appDbContent.Ticktes.Find(id); //axtarib tapiram
-            //    if (slider != null)
-            //    {
-            //        if (slider.IsAvailable == true)
-            //        {
-            //            slider.IsAvailable = false;
-            //        }
-            //        else
-            //        {
-            //            slider.IsAvailable = true;
-            //        }
-            //        appDbContent.Update(slider)
-            //        appDbContent.SaveChanges();
-            //    }
+        //    var slider = appDbContent.Ticktes.Find(id); //axtarib tapiram
+        //    if (slider != null)
+        //    {
+        //        if (slider.IsAvailable == true)
+        //        {
+        //            slider.IsAvailable = false;
+        //        }
+        //        else
+        //        {
+        //            slider.IsAvailable = true;
+        //        }
+        //        appDbContent.Update(slider)
+        //        appDbContent.SaveChanges();
+        //    }
 
-            //    return Json(new
-            //    {
-            //        status = 200
-            //    });
-
-
+        //    return Json(new
+        //    {
+        //        status = 200
+        //    });
 
 
 
 
 
-            public IActionResult Edit(int id)
+
+
+        public IActionResult Edit(int id)
         {
             if (id == 0)
             {

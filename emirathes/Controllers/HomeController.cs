@@ -13,7 +13,7 @@ namespace emirathes.Controllers
         {
             appDbContent = _appDbContent;
         }
-     
+
         public IActionResult SignUp()
         {
             return View();
@@ -39,12 +39,12 @@ namespace emirathes.Controllers
         {
             TicketCategoryVM views = new()
             {
-                Tickts = appDbContent.Ticktes.FirstOrDefault(x=>x.Id == id),
+                Tickts = appDbContent.Ticktes.FirstOrDefault(x => x.Id == id),
                 Categories = appDbContent.Categories.ToList(),
                 Products = appDbContent.Products.ToList(),
                 Passengers = appDbContent.Passengers.ToList()
             };
-           
+
             return View(views);
         }
 

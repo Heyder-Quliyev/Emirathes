@@ -266,8 +266,8 @@ namespace emirathes.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -482,17 +482,12 @@ namespace emirathes.Migrations
             modelBuilder.Entity("emirathes.Models.Products", b =>
                 {
                     b.HasOne("emirathes.Models.Categories", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("emirathes.Models.Categories", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("emirathes.Models.Products", b =>

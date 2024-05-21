@@ -12,8 +12,8 @@ using emirathes.Models;
 namespace emirathes.Migrations
 {
     [DbContext(typeof(AppDbContent))]
-    [Migration("20240509121213_IsPassenger")]
-    partial class IsPassenger
+    [Migration("20240521144635_namesurname")]
+    partial class namesurname
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -269,8 +269,8 @@ namespace emirathes.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -288,10 +288,6 @@ namespace emirathes.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -313,16 +309,15 @@ namespace emirathes.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -487,17 +482,12 @@ namespace emirathes.Migrations
             modelBuilder.Entity("emirathes.Models.Products", b =>
                 {
                     b.HasOne("emirathes.Models.Categories", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("emirathes.Models.Categories", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("emirathes.Models.Products", b =>

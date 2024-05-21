@@ -63,7 +63,7 @@
                                 </div>
                             </div><!-- end single-content-item -->
 
-         
+
                             <div class="section-block"></div>
                             <div class="single-content-item py-4">
                                 <div class="row">
@@ -97,7 +97,7 @@
                                         </div>
                                     </div><!-- end col-lg-12 -->
 
-                               
+
 
 
                                     <div id="inflight-features" class="page-scroll">
@@ -173,7 +173,7 @@
                                                         <!-- end col-lg-4 -->
                                                     }
 
-                                                   
+
 
                                                 </div><!-- end row -->
                                             </div><!-- end inflight-content-item -->
@@ -293,7 +293,7 @@
 
                             <div class="section-block"></div>
                         </div><!-- end description -->
-                        
+
 
 
                         <div id="fare-rules" class="page-scroll">
@@ -363,9 +363,11 @@
                                         </div><!-- end col-lg-4 -->
                                     </div><!-- end row -->
                                 </div>
-                                <p>Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet 
-                                    sagittis elit et vehicula. Cras viverra posuere condimentum.Donec urna arcu, venenatis quis augue sit amet, mattis 
-                                    gravida nunc. Integer faucibus, tortor a tristique adipiscing, arcu metus luctus libero, nec vulputate risus elit id nibh.</p>
+                                <p>
+                                    Maecenas vitae turpis condimentum metus tincidunt semper bibendum ut orci. Donec eget accumsan est. Duis laoreet
+                                    sagittis elit et vehicula. Cras viverra posuere condimentum.Donec urna arcu, venenatis quis augue sit amet, mattis
+                                    gravida nunc. Integer faucibus, tortor a tristique adipiscing, arcu metus luctus libero, nec vulputate risus elit id nibh.
+                                </p>
 
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
@@ -401,7 +403,7 @@
                                             <div class="form-group">
                                                 <div class="select-contain w-auto">
                                                     <select class="select-contain-select">
-                                                       @*  <option value="@Model.Classes">@Model.Classes</option> *@
+                                                        @*  <option value="@Model.Classes">@Model.Classes</option> *@
                                                         <option value="Business">Business</option>
                                                         <option value="First">First</option>
                                                         <option value="">Economy/Coach</option>
@@ -423,76 +425,78 @@
                                             <input type="text" name="qtyInput" value="0">
                                             <div class="qtyInc"><i class="la la-plus"></i></div>
                                         </div>
-                                    </div><!-- end qty-box -->
+                                    </div>
+
+                                    <!-- end qty-box -->
                                 }
 
-                                    
-                                </div><!-- end qty-box -->
-                            </div><!-- end sidebar-widget-item -->
-                            <div class="btn-box pt-2">
+
+                            </div><!-- end qty-box -->
+                        </div><!-- end sidebar-widget-item -->
+                        <div class="btn-box pt-2">
                             <a asp-controller="Home" asp-action="FlightBooking" class="theme-btn text-center w-100 mb-2"><i class="la la-shopping-cart mr-2 font-size-18"></i>Book Now</a>
-                                <a href="#" class="theme-btn text-center w-100 theme-btn-transparent"><i class="la la-heart-o mr-2"></i>Add to Wishlist</a>
-                                <div class="d-flex align-items-center justify-content-between pt-2">
-                                    <a href="#" class="btn theme-btn-hover-gray font-size-15" data-toggle="modal" data-target="#sharePopupForm"><i class="la la-share mr-1"></i>Share</a>
-                                    <p><i class="la la-eye mr-1 font-size-15 color-text-2"></i>3456</p>
-                                </div>
+                            <a href="#" class="theme-btn text-center w-100 theme-btn-transparent"><i class="la la-heart-o mr-2"></i>Add to Wishlist</a>
+                            <div class="d-flex align-items-center justify-content-between pt-2">
+                                <a href="#" class="btn theme-btn-hover-gray font-size-15" data-toggle="modal" data-target="#sharePopupForm"><i class="la la-share mr-1"></i>Share</a>
+                                <p><i class="la la-eye mr-1 font-size-15 color-text-2"></i>3456</p>
                             </div>
-                        </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget single-content-widget">
-                            <h3 class="title stroke-shape">Enquiry Form</h3>
-                            <div class="enquiry-forum">
-                                <div class="form-box">
-                                    <div class="form-content">
-                                        <div class="contact-form-action">
-                                            <form method="post">
-                                                <div class="input-box">
-                                                    <label class="label-text">Your Name</label>
-                                                    <div class="form-group">
-                                                        <span class="la la-user form-icon"></span>
-                                                        <input class="form-control" type="text" name="text" placeholder="Your name">
+                        </div>
+                    </div><!-- end sidebar-widget -->
+                    <div class="sidebar-widget single-content-widget">
+                        <h3 class="title stroke-shape">Enquiry Form</h3>
+                        <div class="enquiry-forum">
+                            <div class="form-box">
+                                <div class="form-content">
+                                    <div class="contact-form-action">
+                                        <form method="post">
+                                            <div class="input-box">
+                                                <label class="label-text">Your Name</label>
+                                                <div class="form-group">
+                                                    <span class="la la-user form-icon"></span>
+                                                    <input class="form-control" type="text" name="text" placeholder="Your name">
+                                                </div>
+                                            </div>
+                                            <div class="input-box">
+                                                <label class="label-text">Your Email</label>
+                                                <div class="form-group">
+                                                    <span class="la la-envelope-o form-icon"></span>
+                                                    <input class="form-control" type="email" name="email" placeholder="Email address">
+                                                </div>
+                                            </div>
+                                            <div class="input-box">
+                                                <label class="label-text">Message</label>
+                                                <div class="form-group">
+                                                    <span class="la la-pencil form-icon"></span>
+                                                    <textarea class="message-control form-control" name="message" placeholder="Write message"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="input-box">
+                                                <div class="form-group">
+                                                    <div class="custom-checkbox mb-0">
+                                                        <input type="checkbox" id="agreechb">
+                                                        <label for="agreechb">
+                                                            I agree with <a href="#">Terms of Service</a> and
+                                                            <a href="#">Privacy Statement</a>
+                                                        </label>
                                                     </div>
                                                 </div>
-                                                <div class="input-box">
-                                                    <label class="label-text">Your Email</label>
-                                                    <div class="form-group">
-                                                        <span class="la la-envelope-o form-icon"></span>
-                                                        <input class="form-control" type="email" name="email" placeholder="Email address">
-                                                    </div>
-                                                </div>
-                                                <div class="input-box">
-                                                    <label class="label-text">Message</label>
-                                                    <div class="form-group">
-                                                        <span class="la la-pencil form-icon"></span>
-                                                        <textarea class="message-control form-control" name="message" placeholder="Write message"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="input-box">
-                                                    <div class="form-group">
-                                                        <div class="custom-checkbox mb-0">
-                                                            <input type="checkbox" id="agreechb">
-                                                            <label for="agreechb">
-                                                                I agree with <a href="#">Terms of Service</a> and
-                                                                <a href="#">Privacy Statement</a>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="btn-box">
-                                                    <button type="button" class="theme-btn">Submit Enquiry</button>
-                                                </div>
-                                            </form>
-                                        </div><!-- end contact-form-action -->
-                                    </div><!-- end form-content -->
-                                </div><!-- end form-box -->
-                            </div><!-- end enquiry-forum -->
-                        </div><!-- end sidebar-widget -->
+                                            </div>
+                                            <div class="btn-box">
+                                                <button type="button" class="theme-btn">Submit Enquiry</button>
+                                            </div>
+                                        </form>
+                                    </div><!-- end contact-form-action -->
+                                </div><!-- end form-content -->
+                            </div><!-- end form-box -->
+                        </div><!-- end enquiry-forum -->
+                    </div><!-- end sidebar-widget -->
 
 
 
-                    </div><!-- end sidebar -->
-                </div><!-- end col-lg-4 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
+                </div><!-- end sidebar -->
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
     </div><!-- end single-content-box -->
 </section><!-- end tour-detail-area -->
 

@@ -1,12 +1,14 @@
 ﻿using emirathes.Extensions;
 using emirathes.Migrations;
 using emirathes.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace emirathes.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class PassengersController : Controller
     {
 
@@ -92,7 +94,7 @@ namespace emirathes.Areas.Admin.Controllers
 
         }
 
-        
+
 
         public IActionResult Edit(int id)
         {

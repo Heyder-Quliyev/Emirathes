@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace emirathes.Models
 {
-    public class AppDbContent: IdentityDbContext <ProgramUsers>
+    public class AppDbContent: IdentityDbContext<ProgramUsers>
     {
-        public AppDbContent(DbContextOptions options) : base(options)
+        public AppDbContent(DbContextOptions<AppDbContent> options) : base(options)
         {
         }
 
@@ -15,9 +15,6 @@ namespace emirathes.Models
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-
-
 
     }
 }

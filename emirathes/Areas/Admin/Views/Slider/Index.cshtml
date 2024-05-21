@@ -206,23 +206,26 @@
                                        
                                         <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>                    
                                         <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                          
-                                            
+
+                              
                                     </td>
-                                    @*  @if (item.IsAvailable)
+                                </tr>
+  }
+
+                                    @*   @if (item.IsAvailable)
                                 {
                                 <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Deactive</a>
 
                                 }else{
                                 <a class="deleteBtn btn btn-primary" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Active</a>
                                 }
-                                <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
-                                    @* <button data-id="@item.Id" type="button" class="editBtn btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit">
+                                <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <button data-id="@item.Id" type="button" class="editBtn btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit">
                                 Edit
-                                </button> *@
-                                </tr>
-                            }
-
+                                </button>
+                                
+                            } *@
+                           
                         </tbody>
                     </table>
                 </div>

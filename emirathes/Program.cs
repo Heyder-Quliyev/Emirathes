@@ -1,8 +1,8 @@
 using DocuSign.eSign.Model;
+using emirathes.Extensions;
 using emirathes.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using NETCore.MailKit.Core;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +18,7 @@ builder.Services.AddIdentity<ProgramUsers, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContent>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true; //R?q?m t?l?b edin
@@ -37,7 +38,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 //builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(""));
 
-//builder.Services.AddScoped<IEmailService, EmailService>();
+
 
 
 var app = builder.Build();
