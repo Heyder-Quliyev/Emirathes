@@ -89,7 +89,7 @@
 //        //        total += item.Total * (1 - prcntg / 100);
 //        //        options.LineItems.Add(sessionListItem);
 //        //    }
-            
+
 //        //}
 //        [HttpGet]
 //        public IActionResult Billing()
@@ -121,7 +121,7 @@
 //                        Title = item.Title,
 //                        Baggage = item.Baggage,
 //                        CabinBaggage = item.CabinBaggage,
-                       
+
 //                    };
 //                    _appDbContext.Orders.Add(orderDetail);
 //                    var product = _appDbContext.Products.FirstOrDefault(p => p.Id == item.ProductId);

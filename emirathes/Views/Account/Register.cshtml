@@ -9,7 +9,7 @@
 
             <form asp-controller="Account" asp-action="Register" method="post">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group" style="width:1080px">
                         <label for="name"> Username:</label>
                         <input asp-for="Username" type="text" class="form-control" required>
                         <span style="color:red" asp-validation-for="Username"></span>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label>
                         Remember Me
                     </label>
