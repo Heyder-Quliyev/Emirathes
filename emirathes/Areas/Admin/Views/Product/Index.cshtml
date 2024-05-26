@@ -1,0 +1,291 @@
+﻿@model List<Product>
+
+@section Styles{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css" rel="stylesheet" />
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-box">
+            <div class="form-title-wrap">
+                <div class="d-flex align-items-center justify-content-between">
+                 
+                  
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                        New Tickts
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+
+                                    <form id="SliderCreateForm" class="row" style="width: 500px;" method="post" asp-area="Admin" asp-controller="Product" asp-action="Create">
+
+                                        @Html.AntiForgeryToken()
+                                        <div class="col-md-4">
+                                            <label>
+                                                From
+                                            </label>
+                                            <input name="Id" type="hidden" class="form-control" />
+                                            <input name="From" type="text" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                        <label>
+                                            To
+                                        </label>
+                                        <input name="To" type="text" class="form-control" />
+                                </div>
+
+                                        <div class="col-md-4" style="width:304px; height:38px">
+                                            <label>
+                                                Direction
+                                            </label>
+                                        
+                                            <input name="Way" type="text" class="form-control" />
+
+                                        </div>
+
+                                        <div class="col-md-4" style="width:304px; height:38px">
+                                            <label>
+                                                Class
+                                            </label>
+                                            <input name="Classes" type="text" class="form-control" />
+
+                                        </div>
+
+
+
+                                        <div class="col-md-4" style="width:304px; height:38px">
+                                            <label>
+                                                Stops
+                                            </label>
+                                            <input name="Stop" type="text" class="form-control" />
+
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Flight Number
+                                            </label>
+                                            <input name="FlightNumber" type="text" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Price
+                                            </label>
+                                            <input name="Price" type="text" class="form-control" />
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Take Off Time
+                                            </label>
+                                            <input name="Date" type="text" class="form-control" />
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Landing Time
+                                            </label>
+                                            <input name="LandigTime" type="text" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Total Flight Time
+                                            </label>
+                                            <input name="TotalTime" type="text" class="form-control" />
+
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Images
+                                            </label>
+                                            <input name="File" type="file" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>
+                                                Reviewed
+                                            </label>
+                                            <input name="IsAvailable" type="checkbox" class="form-check" />
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-success mt-3 btn-block">Edit</button>
+                                        </div>
+                                     
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button form="SliderCreateForm" type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="table-form table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Way</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Flight Number</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Take Off Time</th>
+                                <th scope="col">Landing Time</th>
+                                <th scope="col">Total Time</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Operation</th>
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+
+
+                                <tr>
+                                    <th>@item.From</th>
+                                    <th>@item.To</th>
+
+                                    <td>
+                                        <div class="table-content">
+                                            <h3 class="title">@item.Way</h3>
+                                        </div>
+                                    </td>
+                                    <td>@item.Classes</td>
+                                    <td>@item.FlightNumber</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Date</td>
+                                    <td>@item.LandigTime</td>
+                                    <td>@item.TotalTime</td>
+                                    <td>
+
+                                        <img width="100px" src="~/uploadSlider/@item.ImgUrl"/>
+
+                                    </td>
+
+                                    <td>
+
+                                       
+                                        <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a>                    
+                                        <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                              
+                                    </td>
+                                </tr>
+  }
+@* 
+                                    @if (item.IsAvailable)
+                                {
+                                <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Deactive</a>
+
+                                }else{
+                                <a class="deleteBtn btn btn-primary" asp-area="Admin" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Active</a>
+                                }
+                                <a class="btn btn-success" asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <button data-id="@item.Id" type="button" class="editBtn btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit">
+                                Edit
+                                </button>
+                                
+                            } *@
+                           
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- end form-box -->
+    </div><!-- end col-lg-12 -->
+</div><!-- end row -->
+
+
+     @section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $(document).on('click', '.deleteBtn', function (e) {
+                e.preventDefault();
+                let url = $(this).attr("href");
+                let element = this.parentElement.parentElement;
+
+                Swal.fire({
+                    title: 'Are you sure want to delete this?',
+                    text: "If you delete it, you can never get it back!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete',
+                    cancelButtonText: 'Back'
+
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: url,
+                            type: "get",
+                            dataType: "json",
+                            success: function (response) {
+                                console.log(response)
+                                if (response.status == 200) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        '',
+                                        'success'
+                                    )
+                                    element.outerHTML = '';
+                                }
+                                else if (response.status == 400) {
+                                    //toastr.error(response.message)
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        icon: 'error',
+                                        confirmButtonText: 'Cool'
+                                    })
+                                }
+                            }
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+}

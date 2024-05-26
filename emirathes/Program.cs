@@ -3,6 +3,7 @@ using emirathes.Extensions;
 using emirathes.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,12 @@ builder.Services.AddDbContext<AppDbContent>(options =>
 builder.Services.AddIdentity<ProgramUsers, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContent>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(40);
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.Configure<IdentityOptions>(options =>
@@ -42,6 +49,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 
 var app = builder.Build();
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -55,6 +63,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+app.UseStatusCodePagesWithReExecute("/Error/NotFound", "?statusCode={0}");
 
 app.UseAuthorization();
 

@@ -8,13 +8,31 @@ namespace emirathes.Models
     {
         [Key]
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        [ValidateNever]
-        public Products Products { get; set; }
-        public int UserId { get; set; }
+        public int OrderNumber { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        [Required]
+        public decimal Total { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public string Phone { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Address { get; set; }
+        public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]
-        public Users User { get; set; }
+        public ProgramUsers User { get; set; }
+
+
+        public List<OrderItem> OrderItems { get; set; }
+
     }
 }

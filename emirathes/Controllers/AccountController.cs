@@ -55,7 +55,7 @@ namespace emirathes.Controllers
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(programUsers, "User");
+                //await _userManager.AddToRoleAsync(programUsers, "User");
                 await _signInManager.SignInAsync(programUsers, true);
 
 
@@ -159,15 +159,15 @@ namespace emirathes.Controllers
         public async Task SeedRoles()
         {
            if(! await _roleManager.RoleExistsAsync(roleName: "Admin"))
-            {
+           {
                 await _roleManager.CreateAsync(new IdentityRole(roleName: "Admin"));
-            }
+           }
 
             if (!await _roleManager.RoleExistsAsync(roleName: "User"))
             {
                 await _roleManager.CreateAsync(new IdentityRole(roleName: "User"));
             }
-            }
+        }
 
 
         public async Task SeedAdmin()
@@ -193,12 +193,12 @@ namespace emirathes.Controllers
                 //if (result.Succeeded)
                 //{
                 //    _userManager.AddToRoleAsync(admin, "Admin").Wait();
-                    
+
                 //}
 
 
 
-                    }
+            }
 
 
 

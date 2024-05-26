@@ -26,11 +26,10 @@
     <PackageReference Include="MimeKit" Version="4.5.0" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="Stripe.net" Version="44.7.0" />
+    <PackageReference Include="X.PagedList" Version="9.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\uploadSlider\" />
   </ItemGroup>
 

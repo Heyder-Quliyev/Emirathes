@@ -25,14 +25,5 @@ namespace emirathes.Areas.Admin.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new {area=""});
         }
-
-
-
-
-
-
-
-
-
     }
 }

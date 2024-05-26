@@ -99,7 +99,10 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a>
+                                        <a class="dropdown-item" asp-controller="Home" asp-action="Support">Support</a>
+                                        <a class="dropdown-item" asp-controller="Home" asp-action="About">About</a>
                                         </div>
+
                                 </div>
                             }
                             else
@@ -150,10 +153,10 @@
                             data-text="curvs">
                             Information
                         </h4>
-                        <lu class="list-items list--items">
+                        <ul class="list-items list--items">
                             <li><a asp-controller="Home" asp-action="About">About us</a></li>
-                            <li><a href="contact.html" >Support</a></li>
-                        </lu>
+                            <li><a asp-controller="Home" asp-action="Support">Support</a></li>
+                        </ul>
                     </div>
                     <!-- end footer-item -->
                 </div>
