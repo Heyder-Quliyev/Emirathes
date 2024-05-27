@@ -43,7 +43,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon do?rulamas?
 });
 
-//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(""));
 
 
 

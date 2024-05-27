@@ -55,7 +55,7 @@ namespace emirathes.Controllers
 
             if (result.Succeeded)
             {
-                //await _userManager.AddToRoleAsync(programUsers, "User");
+                await _userManager.AddToRoleAsync(programUsers, "User");
                 await _signInManager.SignInAsync(programUsers, true);
 
 

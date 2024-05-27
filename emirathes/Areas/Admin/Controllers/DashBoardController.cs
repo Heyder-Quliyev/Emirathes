@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace emirathes.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class DashBoardController : Controller
     {
         private readonly SignInManager<ProgramUsers> _signInManager;
