@@ -37,16 +37,16 @@ namespace emirathes.Controllers
 
         //public IActionResult FlightSingle(int id)
         //{
-        //    //ViewBag.Category = appDbContent.Categories.ToList();
+        //    ViewBag.Category = appDbContent.Categories.ToList();
         //    ViewBag.Types = appDbContent.Passengers.ToList();
-        //    return View(appDbContent.Ticktes.Find(id));
+        //    return View(appDbContent.Products.Find(id));
         //}
 
         public IActionResult FlightSingle(int id)
         {
             TicketCategoryVM views = new()
             {
-                Tickts = appDbContent.Products.FirstOrDefault(x => x.Id == id),
+            Tickts = appDbContent.Products.FirstOrDefault(x => x.Id == id),
                 Categories = appDbContent.Categories.ToList(),
                 Products = appDbContent.Attributes.ToList(),
                 Passengers = appDbContent.Passengers.ToList()
@@ -56,10 +56,9 @@ namespace emirathes.Controllers
         }
 
 
-        public IActionResult FlightBooking()
+        public IActionResult FlightBooking(int id)
         {
             return View();
-
         }
 
 
@@ -75,56 +74,11 @@ namespace emirathes.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Support()
+        public IActionResult Contact()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public async Task <ActionResult> Support(ContactModel model, object smtpServer)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            ConfigurationSection emailSettings = (ConfigurationSection)_configuration.GetSection("EmailSettings");
-        //            string smtServer = emailSettings.GetValue<string>("Email");
-        //            int emtpPort = emailSettings.GetValue<int>("EmailPort");
-        //            string userName = emailSettings.GetValue<string>("EmailAddress");
-        //            string password = emailSettings.GetValue<string>("EmailPassword");
-
-        //            //create the email message
-        //            MimeMessage message = new MimeMessage();
-        //            message.From.Add(new MailboxAddress(" ", "heyderquliyev30@gmail.com"));
-        //            message.To.Add(new MailboxAddress(" ", "heyderquliyev30@gmail.com"));
-        //            message.Subject = "New From Submission";
-
-        //            //Build themail body
-        //            BodyBuilder builder = new BodyBuilder();
-        //            builder.TextBody = $"Name: {model.SenderName} {Environment.NewLine} Email:{model.SenderEmail}{Environment.NewLine}Message:{model.Message}";
-
-        //            message.Body = builder.ToMessageBody();
-
-        //            //configure the email client
-
-        //            using (var client = new MailKit.Net.Smtp.SmtpClient())
-        //            {
-        //                await client.ConnectAsync(smtpServer, smtpPort, SecureSocketOptions.StartTls);
-        //                await client.DisconnectAsync(true);
-
-        //            }
-
-
-
-        //        }
-        //        catch (Exception)
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return View(model);
-        //}
 
         public IActionResult Confirmation()
         {

@@ -26,6 +26,16 @@ namespace emirathes.Models
         public string Email { get; set; }
         [Required]
         public string Address { get; set; }
+        public int Quantity { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Price { get; set; }
+        public string Baggage { get; set; }
+        public string CabinBaggage { get; set; }
+        public DateTime LandingDate { get; set; }
+        public int TicketId { get; set; }
+        [ForeignKey("TicketId")]
+        [ValidateNever]
+        public Product Tickets { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [ValidateNever]

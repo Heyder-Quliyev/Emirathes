@@ -45,8 +45,22 @@
                 <div class="form-group">
                     <p>Already have an account? <a asp-controller="Account" asp-action="Login">Log In</a></p>
                 </div>
-                <button style="width:200px" type="submit" class="btn btn-danger btn-block mb-3">Register</button>
+                <div class="form-group btn btn-block">
+                    <button style="width: 360.4px" type="submit" class="btn btn-success">Register</button>
+                </div>
             </form>
         </div>
+
+        <div class="col-md-4 offset-md-4 social-auth-links text-center mb-3">
+           <a asp-action="FacebookLogin" class="btn btn-block btn-primary">
+               <i class="la la-facebook mr-2"></i> Sign in using Facebook
+           </a>
+
+            <a asp-action="GoogleLogin" class="btn btn-block btn-danger">
+                <i class="la la-google mr-2"></i> Sign in using Google
+            </a>
+        </div>
+
+
     </div>
 </div>

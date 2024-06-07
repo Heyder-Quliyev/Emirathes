@@ -5,6 +5,10 @@ namespace emirathes.ViewModels
     public class CartItem
     {
         public int ProductId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
         public string FlightNumber { get; set; }
         public string ProductFrom { get; set; }
         public string ProductTo { get; set; }

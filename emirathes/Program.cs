@@ -1,10 +1,11 @@
-using DocuSign.eSign.Model;
 using emirathes.Extensions;
 using emirathes.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
-using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,24 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedEmail = false; //qeydiyyat etdikden sonra email ile token gönderecek 
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon do?rulamas?
 });
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+})
+
+    .AddCookie()
+
+.AddFacebook(opt =>
+ {
+     opt.AppId = "415431347994155";
+     opt.AppSecret = "757550bb5850a889982b88cf93614832";
+ });
+
+
 
 
 
@@ -83,3 +102,14 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+//app.Use(async (context, next) =>
+//{
+//    if (!context.User.Identity.IsAuthenticated)
+//    {
+//        context.Response.Redirect("/Account/Login");
+//        return;
+//    }
+
+//    await next();
+//});

@@ -105,19 +105,6 @@ namespace emirathes.Areas.Admin.Controllers
 
         //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         public JsonResult Delete(int id)
         {
             if (id == 0)

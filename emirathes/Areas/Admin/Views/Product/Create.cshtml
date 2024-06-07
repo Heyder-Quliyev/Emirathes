@@ -57,6 +57,21 @@
                         </div>
 
 
+                        <div class="col-md-3">
+                            <label>
+                                Category
+                            </label>
+                            <br />
+                            <select class="form-select" asp-for="CategoryId" style="width:200px; height:38px">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.TicketsClassName</option>
+
+                                }
+                            </select>
+                        </div>
+
+
                         <div class="col-md-4">
                             <label>
                                 Stops

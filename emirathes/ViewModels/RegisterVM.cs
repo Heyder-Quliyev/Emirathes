@@ -21,6 +21,5 @@ namespace emirathes.ViewModels
         [ValidateNever]
         public bool IsRemember { get; set; }
 
-
     }
 }

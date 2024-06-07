@@ -1,9 +1,6 @@
 ﻿using emirathes.Extensions;
 using emirathes.Models;
 using Microsoft.AspNetCore.Mvc;
-using emirathes.Controllers;
-
-using System;
 using Microsoft.AspNetCore.Authorization;
 
 namespace emirathes.Areas.Admin.Controllers
@@ -26,27 +23,30 @@ namespace emirathes.Areas.Admin.Controllers
             return View(appDbContent.Products.ToList());
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.Categories=appDbContent.Categories.ToList();
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> Create(Product tickts)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return View(tickts);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(tickts);
+            //}
+
             if (!tickts.File.IsImage())
             {
                 ModelState.AddModelError("Photo", "Image type is not valid");
                 return View(tickts);
             }
+
             string filename = await tickts.File.SaveFileAsync(_env.WebRootPath, "uploadSlider");
 
             tickts.ImgUrl = filename;

@@ -11,6 +11,7 @@ namespace emirathes.Controllers
     {
         private readonly AppDbContent _context;
         private readonly UserManager<ProgramUsers> _userManager;
+        //private readonly ShopViewModel _shopViewModel;
         public TicketController(AppDbContent context, UserManager<ProgramUsers> userManager)
         {
             _context = context;
@@ -63,18 +64,28 @@ namespace emirathes.Controllers
         }
 
 
-        //[HttpPost]
-        //public IActionResult AddReview(Review review)
+
+        //public IActionResult Search(string query)
         //{
-        //    int id = review.ProductId;
-        //    review.Date = DateTime.Now;
-        //    _context.Reviews.Add(review);
-        //    _context.SaveChanges();
-        //    return Json("Added.");
 
-        //    //return RedirectToAction("ProductDetails", new { id = id });
+        //    // Safely perform the search operation, considering potential null values in Title and Author.Name
+        //    var ticket = _shopViewModel.Products.GetAll(includeProperties: "Category,Language,Author")
+        //                     .Where(p => (p.Title != null && p.Title.Contains(query)) ||
+        //                                 (p.Author != null && !string.IsNullOrEmpty(p.Author.Name) && p.Author.Name.Contains(query)))
+        //                     .ToList();
+
+        //    // Prepare the ViewModel to pass to the View
+        //    var shopVM = new ShopViewModel
+        //    {
+        //        Categories = _shopViewModel.Categories.GetAll(),
+        //        Attributes = _shopViewModel.Attributes.GetAll(),
+        //        Products = ticket,
+
+        //    };
+
+        //    // Return the view with the ViewModel
+        //    return View(shopVM);
         //}
-
 
 
 

@@ -1,5 +1,4 @@
-﻿
-using emirathes.Models;
+﻿using emirathes.Models;
 
 namespace emirathes.ViewModels
 {
