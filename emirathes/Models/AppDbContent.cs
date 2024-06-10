@@ -17,5 +17,7 @@ namespace emirathes.Models
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<ProgramUsers> ProgramUsers { get; set; }
+        public DbSet<ContactUser> ContactUsers { get; set; }
+
     }
 }

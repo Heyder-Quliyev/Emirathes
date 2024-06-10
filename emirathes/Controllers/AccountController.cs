@@ -1,10 +1,12 @@
-﻿using DocuSign.eSign.Model;
-using emirathes.Extensions;
-using emirathes.Models;
-using emirathes.ViewModels;
+﻿using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Microsoft.VisualBasic;
+using MimeKit;
+using emirathes.Extensions;
+using emirathes.Models;
+using System.Data;
+using emirathes.ViewModels;
 
 
 namespace emirathes.Controllers
@@ -27,10 +29,6 @@ namespace emirathes.Controllers
             _emailService = emailService;
         }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
 
         public IActionResult Login()
         {
@@ -38,73 +36,160 @@ namespace emirathes.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult> Register(RegisterVM model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            
-            var programUsers = new ProgramUsers
-            {
-                Email = model.Email,
-                UserName = model.Username
-            };
-            var result = await _userManager.CreateAsync(programUsers, model.Password!);
+        //[HttpPost]
+        //public async Task<IActionResult> Login(LoginVM model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ModelState.AddModelError("", "Something Went Wrong");
+        //        return View(model);
+        //    }
 
+        //    var user = await _userManager.FindByEmailAsync(model.Email);
+        //    if (user != null)
+        //    {
+        //        var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
+        //        if (result.Succeeded)
+        //        {
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "Password or email incorrect");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", "User not found");
+        //    }
+        //    //emailService.SendEmailAsync();
+        //    return View(model);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM loginVM, string returnUrl)
+        {
+            var user = await _userManager.FindByNameAsync(loginVM.Email);
+            if (user == null)
+            {
+                // Log that the user was not found
+                Console.WriteLine("User not found.");
+                // Optionally, you could return an error message to the user
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View(loginVM);
+            }
+
+            if (!await _userManager.IsEmailConfirmedAsync(user))
+            {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token = token }, Request.Scheme);
+                await _emailService.SendEmailAsync(user.Email, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
+                return RedirectToAction("Confirmation", "Account");
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, false, true);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(programUsers, "User");
-                await _signInManager.SignInAsync(programUsers, true);
-
-
-
-
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(programUsers);
-                var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = programUsers.Id, token = token });
-                //hemishe using de hansi datani ishletdiyine bax
-                await _emailService.SendEmailAsync(model.Email!, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
-
-                return RedirectToAction("Index", "Home"); // redirect to action`i tek yazma. Qabaginda return yaz hemishe
+                Console.WriteLine("Login succeeded.");
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            foreach (var item in result.Errors)
+            else if (result.IsLockedOut)
             {
-                ModelState.AddModelError("", item.Description);
+                // Log that the user is locked out
+                Console.WriteLine("User is locked out.");
+                // Optionally, you could return a lockout message to the user
+                return View("Lockout");
             }
-            return View(model);
+            else
+            {
+                // Log that the login attempt failed
+                Console.WriteLine("Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View(loginVM);
+            }
         }
 
 
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginVM model)
-        {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "Something Went Wrong");
-                return View(model);
-            }
 
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user != null)
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
+        {
+            if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
+                ProgramUsers programUsers = new ProgramUsers()
+                {
+                    UserName = registerVM.Username,
+                    Email = registerVM.Email,
+                    
+                };
+                var result = await _userManager.CreateAsync(programUsers, registerVM.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(programUsers);
+                    var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = programUsers.Id, token = token }, Request.Scheme);
+                    await _emailService.SendEmailAsync(registerVM.Email, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
+
+                    await _userManager.AddToRoleAsync(programUsers, "User");
+
+                    return RedirectToAction("Confirmation", "Account");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Password or email incorrect");
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
                 }
             }
-            else
+
+            return View(registerVM);
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
             {
-                ModelState.AddModelError("", "User not found");
+                return RedirectToAction("Index", "Home");
             }
-            //emailService.SendEmailAsync();
-            return View(model);
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return View("ConfirmEmail");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -112,31 +197,6 @@ namespace emirathes.Controllers
         {
             return View();
         }
-
-        public async Task<IActionResult> ConfirmEmail(string Id, string token)
-        {
-            if(Id == null || token == null)
-            {
-                return View("Error");
-            }
-            var user = await _userManager.FindByIdAsync(Id);
-            if (user != null)
-            {
-                var result = await _userManager.ConfirmEmailAsync(user, token);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
-            }
-            return View("Error");
-        }
-
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
-
         [HttpGet]
         public IActionResult ForgotPassword()
         {
@@ -165,6 +225,9 @@ namespace emirathes.Controllers
             TempData["Message"] = "An email has been sent to your email address with instructions on how to reset your password.";
             return RedirectToAction("Message");
         }
+
+
+
 
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
@@ -217,112 +280,6 @@ namespace emirathes.Controllers
             ViewBag.Message = TempData["Message"];
             return View();
         }
-
-
-        //#region SocialMediaOperations
-
-        //public IActionResult FacebookLogin(string returnUrl)
-        //{
-        //    string redirectnUrl = Url.Action("FacebookResponse","Account", new { returnUrl = returnUrl });
-        //    var properties =_signInManager.ConfigureExternalAuthenticationProperties("Facebook", redirectnUrl);
-        //    return new ChallengeResult("Facebook", properties);
-        //}
-
-        //public async Task<IActionResult> FacebookResponse(string returnUrl)
-        //{
-        //    var loginInfo = await _signInManager.GetExternalLoginInfoAsync();
-        //    if (loginInfo == null)
-        //    {
-        //        return RedirectToAction("Signup");
-        //    }
-        //    else
-        //    {
-        //        var result = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, true);
-        //        if (result.Succeeded)
-        //        {
-        //            return Redirect(returnUrl);
-        //        }
-        //        else
-        //        {
-        //            if (loginInfo.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
-        //            {
-        //                ProgramUsers programUsers = new ProgramUsers()
-        //                {
-        //                    Email = loginInfo.Principal.FindFirstValue(ClaimTypes.Email),
-        //                    UserName = loginInfo.Principal.FindFirstValue(ClaimTypes.Name)
-
-        //                };
-
-        //            }
-
-        //            return RedirectToAction("Signup");
-        //        }
-        //    }
-        //    }
-        //}
-        //#endregion
-
-
-
-        #region SocialMediaOperations
-
-        public IActionResult FacebookLogin(string returnUrl)
-        {
-            string redirectnUrl = Url.Action("FacebookResponse", "Account", new { returnUrl = returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", redirectnUrl);
-            return new ChallengeResult("Facebook", properties);
-        }
-
-        public async Task<IActionResult> FacebookResponse(string returnUrl)
-        {
-            var loginInfo = await _signInManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return RedirectToAction("Signup");
-            }
-            else
-            {
-                var result = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, true);
-                if (result.Succeeded)
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    if (loginInfo.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
-                    {
-                        ProgramUsers programUsers = new ProgramUsers()
-                        {
-                            Email = loginInfo.Principal.FindFirstValue(ClaimTypes.Email),
-                            UserName = loginInfo.Principal.FindFirstValue(ClaimTypes.Name)
-                        };
-                        // You might want to add code here to save the programUsers to the database or perform other operations.
-
-                        var createResult = await _userManager.CreateAsync(programUsers);
-                        if (createResult.Succeeded)
-                        {
-                            var identityLogin = await _userManager.AddLoginAsync(programUsers, loginInfo);
-                            if (identityLogin.Succeeded)
-                            {
-                                await _signInManager.SignInAsync(programUsers, true);
-                                return Redirect(returnUrl);
-                            }
-                        }
-
-
-
-                    }
-                    // Optionally, redirect or return a view if the external login failed.
-
-
-
-
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-        }
-
-        #endregion
 
 
 

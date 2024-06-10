@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Stripe;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using emirathes.IRepository;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddScoped<IEmailService, EmailService>();
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true; //R?q?m t?l?b edin
@@ -60,11 +62,7 @@ builder.Services.AddAuthentication(options =>
      opt.AppSecret = "757550bb5850a889982b88cf93614832";
  });
 
-
-
-
-
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 app.UseSession();

@@ -7,6 +7,7 @@ using NETCore.MailKit.Core;
 using System.Diagnostics;
 using MailKit.Net.Smtp;
 using System.Net.Mail;
+using emirathes.IRepository;
 
 namespace emirathes.Controllers
 {
@@ -15,10 +16,14 @@ namespace emirathes.Controllers
         
         private readonly AppDbContent appDbContent;
         private readonly IConfiguration _configuration;
-       public HomeController(AppDbContent _appDbContent, IConfiguration configuration)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(AppDbContent _appDbContent, IConfiguration configuration, IUnitOfWork unitOfWork)
         {
             appDbContent = _appDbContent;
             _configuration = configuration;
+            _unitOfWork = unitOfWork;
+
         }
 
         public IActionResult SignUp()
