@@ -7,7 +7,7 @@ using emirathes.Extensions;
 using emirathes.Models;
 using System.Data;
 using emirathes.ViewModels;
-
+using emirathes.IRepository;
 
 namespace emirathes.Controllers
 {
@@ -18,17 +18,19 @@ namespace emirathes.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ProgramUsers> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly IUnitOfWork _unitOfWork;
 
-
-        public AccountController(AppDbContent _appDbContent, RoleManager<IdentityRole> roleManager, SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager, IEmailService emailService)
+        public AccountController(AppDbContent _appDbContent, RoleManager<IdentityRole> roleManager, SignInManager<ProgramUsers> signInManager, UserManager<ProgramUsers> userManager,
+            IEmailService emailService, IUnitOfWork unitOfWork)
         {
             appDbContent = _appDbContent;
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
             _emailService = emailService;
-        }
+            _unitOfWork = unitOfWork;
 
+        }
 
         public IActionResult Login()
         {
@@ -36,93 +38,35 @@ namespace emirathes.Controllers
         }
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> Login(LoginVM model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ModelState.AddModelError("", "Something Went Wrong");
-        //        return View(model);
-        //    }
-
-        //    var user = await _userManager.FindByEmailAsync(model.Email);
-        //    if (user != null)
-        //    {
-        //        var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
-        //        if (result.Succeeded)
-        //        {
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Password or email incorrect");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("", "User not found");
-        //    }
-        //    //emailService.SendEmailAsync();
-        //    return View(model);
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM loginVM, string returnUrl)
+        public async Task<IActionResult> Login(LoginVM model)
         {
-            var user = await _userManager.FindByNameAsync(loginVM.Email);
-            if (user == null)
+            if (!ModelState.IsValid)
             {
-                // Log that the user was not found
-                Console.WriteLine("User not found.");
-                // Optionally, you could return an error message to the user
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return View(loginVM);
+                ModelState.AddModelError("", "Something Went Wrong");
+                return View(model);
             }
 
-            if (!await _userManager.IsEmailConfirmedAsync(user))
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
             {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token = token }, Request.Scheme);
-                await _emailService.SendEmailAsync(user.Email, "Confirm your email", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>.");
-                return RedirectToAction("Confirmation", "Account");
-            }
-
-            var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, false, true);
-            if (result.Succeeded)
-            {
-                Console.WriteLine("Login succeeded.");
-                if (!string.IsNullOrEmpty(returnUrl))
+                var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRemember, false);
+                if (result.Succeeded)
                 {
-                    return Redirect(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
-            }
-            else if (result.IsLockedOut)
-            {
-                // Log that the user is locked out
-                Console.WriteLine("User is locked out.");
-                // Optionally, you could return a lockout message to the user
-                return View("Lockout");
+                else
+                {
+                    ModelState.AddModelError("", "Password or email incorrect");
+                }
             }
             else
             {
-                // Log that the login attempt failed
-                Console.WriteLine("Invalid login attempt.");
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                return View(loginVM);
+                ModelState.AddModelError("", "User not found");
             }
+            //emailService.SendEmailAsync();
+            return View(model);
         }
 
 
@@ -142,7 +86,7 @@ namespace emirathes.Controllers
                 {
                     UserName = registerVM.Username,
                     Email = registerVM.Email,
-                    
+
                 };
                 var result = await _userManager.CreateAsync(programUsers, registerVM.Password);
                 if (result.Succeeded)
@@ -168,6 +112,15 @@ namespace emirathes.Controllers
         }
 
 
+
+
+
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
@@ -226,9 +179,6 @@ namespace emirathes.Controllers
             return RedirectToAction("Message");
         }
 
-
-
-
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
         {
@@ -273,6 +223,11 @@ namespace emirathes.Controllers
 
             return View(model);
         }
+
+
+
+
+
 
         [HttpGet]
         public IActionResult Message()

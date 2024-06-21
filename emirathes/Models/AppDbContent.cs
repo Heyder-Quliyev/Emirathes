@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using emirathes.Models.Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace emirathes.Models
@@ -18,6 +19,7 @@ namespace emirathes.Models
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<ProgramUsers> ProgramUsers { get; set; }
         public DbSet<ContactUser> ContactUsers { get; set; }
+        public DbSet<Tickets> Tickets { get; set; }
 
     }
 }

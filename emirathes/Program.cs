@@ -27,7 +27,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -36,7 +35,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false; //Böyük h?rf t?l?b edin
     options.Password.RequiredLength = 8; //T?l?b olunan uzunluq...
     options.Password.RequireNonAlphanumeric = false; //@ * ! ve.s kimi simvollar olmalidi
-    options.Lockout.MaxFailedAccessAttempts = 5; //5 giri?ten sonra bloklanir 
+    options.Lockout.MaxFailedAccessAttempts = 50; //5 giri?ten sonra bloklanir 
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMilliseconds(5); //bloklamndiqdan 5deq sonra acilir
     options.Lockout.AllowedForNewUsers = true; //yeni qeydiyyat userdirse passwordu unuda biler.bir nece yazdiqda bloklamaya bilersiz
                                                //   options.User.AllowedUserNameCharacters =
@@ -46,21 +45,23 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon do?rulamas?
 });
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-})
 
-    .AddCookie()
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
+//})
 
-.AddFacebook(opt =>
- {
-     opt.AppId = "415431347994155";
-     opt.AppSecret = "757550bb5850a889982b88cf93614832";
- });
+//    .AddCookie()
+
+//.AddFacebook(opt =>
+// {
+//     opt.AppId = "415431347994155";
+//     opt.AppSecret = "757550bb5850a889982b88cf93614832";
+// });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

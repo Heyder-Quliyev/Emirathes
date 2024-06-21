@@ -38,11 +38,11 @@
                             <div id="contact-success-message" class="alert alert-success" role="alert">
                                 Thank You! Your message has been sent.
                             </div>
-                            <form asp-action="Contact" id="contact-form" method="post" class="row">
+                            <form asp-controller="Contact" asp-action="Contact" id="contact-form" method="post" class="row">
                                 <div class="col-lg-6 responsive-column">
-                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="input-box">
-                                        <label class="label-text">Your Name</label>
+                                        <label asp-for="FullName" class="label-text">Your Name</label>
                                         <div  class="form-group">
                                             <span asp-validation-for="FullName" class="la la-user form-icon"></span>
                                             <input asp-for="FullName" class="form-control" type="text" id="name" placeholder="Your name">
@@ -51,18 +51,18 @@
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6 responsive-column">
                                     <div class="input-box">
-                                        <label class="label-text">Your Email</label>
+                                        <label asp-for="Email" class="label-text">Your Email</label>
                                         <div class="form-group">
                                             <span asp-validation-for="Email" class="la la-envelope-o form-icon"></span>
-                                            <input asp-for="Email" id="email" type="email" class="form-control" placeholder="Email address">
+                                            <input asp-for="Email" type="email" class="form-control" placeholder="Email address">
                                         </div>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-12">
                                     <div class="input-box">
-                                        <label class="label-text">Message</label>
+                                        <label asp-for="Message" class="label-text">Message</label>
                                         <div class="form-group">
-                                            <span class="la la-pencil form-icon"></span>
+                                            <span asp-validation-for="Message" class="la la-pencil form-icon"></span>
                                             <textarea asp-for="Message" id="message" name="message" class="message-control form-control" placeholder="Write message"></textarea>
                                         </div>
                                     </div>

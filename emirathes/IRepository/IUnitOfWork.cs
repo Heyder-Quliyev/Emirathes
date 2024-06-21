@@ -9,8 +9,8 @@ namespace emirathes.IRepository
 {
         public interface IUnitOfWork
         {
-           
-            IContactUserRepository ContactUser { get; }
+        IProgramUsers ProgramUsers { get; }
+        IContactUserRepository ContactUser { get; }
             
 
             void Save();
